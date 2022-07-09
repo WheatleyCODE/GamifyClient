@@ -1,0 +1,10 @@
+Что понадобится
+
+Redux +
+Redux thunk +
+React-redux +
+Axios +
+React router
+React transition group+
+SCSS +
+Rxjs +
