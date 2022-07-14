@@ -1,0 +1,8 @@
+.logo {
+  @include flex-center;
+  cursor: pointer;
+
+  svg {
+    font-size: $fonsSizeIcons;
+  }
+}

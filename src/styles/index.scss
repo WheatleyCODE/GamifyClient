@@ -1,0 +1,24 @@
+@import '~normalize.css';
+@import './fonts.scss';
+@import './variables';
+@import './mixins';
+
+* {
+  font-family: 'RubicRegular';
+  letter-spacing: -0.2px;
+  color: $colorBlack;
+}
+
+@import './components/Home.scss';
+
+@import './components/Adds/Adds.scss';
+
+@import './components/Header/Header.scss';
+@import './components/Header/HeaderMenu.scss';
+@import './components/Header/HeaderMenuItem.scss';
+@import './components/Header/HeaderSection.scss';
+
+@import './components/Logo/Logo.scss';
+@import './components/Logo/LogoText.scss';
+
+@import './components/User/User.scss';

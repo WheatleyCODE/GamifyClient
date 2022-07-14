@@ -1,0 +1,7 @@
+.header {
+  padding: $headerPaddingTopAndBottom $paddingEdge;
+  height: $headerHeight;
+  display: flex;
+  justify-content: space-between;
+  @include Shadow;
+}

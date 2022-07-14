@@ -33,6 +33,7 @@ module.exports = {
   ignorePatterns: ['.eslintrc.js'],
   rules: {
     'new-cap': 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'jsx-a11y': {

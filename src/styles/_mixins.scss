@@ -1,0 +1,30 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin ButtonIcon($color) {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  transition: background-color $animationDuration;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color;
+  }
+}
+
+@mixin OnHoverColor($color) {
+  transition: color $animationDuration;
+  cursor: pointer;
+
+  &:hover {
+    color: $color;
+  }
+}
+
+@mixin Shadow {
+  box-shadow: 0 0 6px 0 $colorShadow;
+}

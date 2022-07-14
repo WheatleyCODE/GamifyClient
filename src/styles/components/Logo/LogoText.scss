@@ -1,0 +1,8 @@
+.logoText {
+  @include flex-center;
+  cursor: pointer;
+
+  .title {
+    font-size: 2rem;
+  }
+}

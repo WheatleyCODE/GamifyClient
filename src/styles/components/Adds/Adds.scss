@@ -1,0 +1,8 @@
+.adds {
+  @include flex-center;
+  @include ButtonIcon($colorLightGrey);
+
+  svg {
+    font-size: $fonsSizeIcons;
+  }
+}

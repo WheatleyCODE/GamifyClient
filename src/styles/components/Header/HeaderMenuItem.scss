@@ -1,0 +1,5 @@
+.headerMenuItem {
+  padding: 5px 5px;
+
+  @include OnHoverColor($colorOrange)
+}
