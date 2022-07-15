@@ -34,6 +34,8 @@ module.exports = {
   rules: {
     'new-cap': 'off',
     'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off',
+    'default-param-last': 'off',
   },
   settings: {
     'jsx-a11y': {

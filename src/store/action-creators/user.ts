@@ -1,22 +1,18 @@
-import axios from 'axios';
 import { Dispatch } from 'react';
+import { UserService } from '../../services/UserService';
 import { UserAction, UserActionTypes } from '../../types/user';
 
 export const fetchUsers = () => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
-      dispatch({ type: UserActionTypes.FETCH_USERS });
+      dispatch({ type: UserActionTypes.FETCH_USERS_START });
 
-      const response = await axios.get(
-        'https://jsonplaceholder.typicode.com/users',
-      );
+      const response = await UserService.fetchUsers();
 
-      setTimeout(() => {
-        dispatch({
-          type: UserActionTypes.FETCH_USERS_SUCCES,
-          payload: response.data,
-        });
-      }, 500);
+      dispatch({
+        type: UserActionTypes.FETCH_USERS_SUCCES,
+        payload: response.data,
+      });
     } catch (e) {
       dispatch({
         type: UserActionTypes.FETCH_USERS_ERROR,
