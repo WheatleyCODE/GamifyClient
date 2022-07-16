@@ -6,6 +6,11 @@ export interface AuthResponse {
   user: User;
 }
 
+export interface ResponseError {
+  message: string;
+  statusCode: number;
+}
+
 export interface AuthState {
   user: User;
   isAuth: boolean;
@@ -18,8 +23,13 @@ export interface AuthState {
 export enum AuthActionTypes {
   SET_USER = 'SET_USER',
   REMOVE_USER = 'REMOVE_USER',
+  SET_AUTH_ERROR = 'SET_AUTH_ERROR',
 }
 
+interface SetAuthErrorAction {
+  type: AuthActionTypes.SET_AUTH_ERROR;
+  payload: string | null;
+}
 interface SetUserAction {
   type: AuthActionTypes.SET_USER;
   payload: AuthResponse;
@@ -29,4 +39,4 @@ interface RemoveUserAction {
   type: AuthActionTypes.REMOVE_USER;
 }
 
-export type AuthAction = SetUserAction | RemoveUserAction;
+export type AuthAction = SetUserAction | RemoveUserAction | SetAuthErrorAction;

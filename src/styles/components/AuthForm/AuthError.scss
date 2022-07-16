@@ -1,0 +1,20 @@
+.authError {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  padding-left: 55px;
+  border-radius: 5px;
+  background-color: $colorLightRed;
+
+  .errorIcon {
+    @include flex-center;
+    height: 100%;
+    position: absolute;
+    left: 20px;
+    top: 0;
+
+    svg {
+      font-size: 1.6rem;
+    }
+  }
+}

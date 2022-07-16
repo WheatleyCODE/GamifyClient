@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 export type HeaderMenuProps = {
   children: React.ReactNode;
 };
 
-export function HeaderMenu({ children }: HeaderMenuProps) {
+export const HeaderMenu: FC<HeaderMenuProps> = ({ children }) => {
   return <div className="headerMenu">{children}</div>;
-}
+};

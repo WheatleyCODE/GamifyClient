@@ -36,6 +36,18 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     'default-param-last': 'off',
+    'max-len': ['error', 160],
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'default-param-last': 'off',
+    '@typescript-eslint/default-param-last': 'off',
   },
   settings: {
     'jsx-a11y': {

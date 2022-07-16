@@ -28,3 +28,58 @@
 @mixin Shadow {
   box-shadow: 0 0 6px 0 $colorShadow;
 }
+
+@mixin Input($color) {
+  outline: none;
+  border: 1px solid $colorLightGrey;
+  border-radius: 3px;
+  transition: $animationDuration;
+
+  &:hover {
+    outline: 1px solid $colorLightPrimary;
+  }
+
+  &:focus {
+    outline: 1px solid $color;
+  }
+}
+
+@mixin ButtonFill($color) {
+  border: 1px solid $color;
+  background-color: $color;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 3px;
+  transition: $animationDuration;
+
+  &:hover {
+    background-color: $color;
+    opacity: 0.8;
+  }
+
+  &:active {
+    background-color: $color;
+    opacity: 0.9;
+  }
+}
+
+@mixin ButtonOutline($color) {
+  border: 1px solid $color;
+  background-color: $colorWhite;
+  color: $color;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 3px;
+  transition: $animationDuration;
+
+  &:hover {
+    background-color: $color;
+    opacity: 0.8;
+    color: $colorWhite;
+  }
+
+  &:active {
+    background-color: $color;
+    opacity: 0.9;
+  }
+}

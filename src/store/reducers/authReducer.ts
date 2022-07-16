@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/default-param-last */
 import { AuthAction, AuthActionTypes, AuthState } from '../../types/auth';
 import { User } from '../../types/user';
 
@@ -18,7 +17,6 @@ export const authReducer = (
   switch (action.type) {
     case AuthActionTypes.SET_USER: {
       const { user, accessToken, refreshToken } = action.payload;
-
       return { ...state, isAuth: true, user, accessToken, refreshToken };
     }
 
@@ -31,7 +29,11 @@ export const authReducer = (
         refreshToken: '',
       };
 
+    case AuthActionTypes.SET_AUTH_ERROR: {
+      return { ...state, error: action.payload };
+    }
+
     default:
-      return state;
+      return { ...state };
   }
 };

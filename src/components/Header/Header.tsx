@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 export type HeaderProps = {
   children: React.ReactNode;
 };
 
-export function Header({ children }: HeaderProps) {
+export const Header: FC<HeaderProps> = ({ children }) => {
   return <div className="header">{children}</div>;
-}
+};

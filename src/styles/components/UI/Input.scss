@@ -1,0 +1,26 @@
+.input {
+  position: relative;
+
+  input {
+    @include Input($colorPrimary);
+    padding: 10px 6px;
+    padding-left: 20px;
+    font-size: 1.1rem;
+  }
+
+  .icon {
+    height: 100%;
+    position: absolute;
+    @include flex-center;
+    left: 10px;
+    font-size: 1.4rem;
+
+  }
+}
+
+.input.icon {
+  input {
+    padding-left: 45px;
+  }
+}
+

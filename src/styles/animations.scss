@@ -1,0 +1,17 @@
+.show-enter-active {
+  animation: defaultShow $animationDuration forwards;
+}
+
+.show-exit-active {
+  animation: defaultShow $animationDuration forwards reverse;
+}
+
+@keyframes defaultShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

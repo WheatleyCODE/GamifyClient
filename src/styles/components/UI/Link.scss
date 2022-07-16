@@ -1,0 +1,11 @@
+.link {
+  display: inline-block;
+  color: $colorPrimary;
+  padding-bottom: 1px;
+  border-bottom: 1px solid $colorPrimary;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 1px solid $colorWhite;
+  }
+}

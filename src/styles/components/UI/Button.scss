@@ -1,0 +1,24 @@
+.button {
+
+  button {
+    padding: 10px;
+    color: $colorWhite;
+    font-size: 1.1rem;
+  }
+
+  button.fill.orange {
+    @include ButtonFill($colorOrange);
+  }
+
+  button.fill.primary {
+    @include ButtonFill($colorPrimary);
+  }
+
+  button.outline.orange {
+    @include ButtonOutline($colorOrange);
+  }
+
+  button.outline.primary {
+    @include ButtonOutline($colorPrimary);
+  }
+}

@@ -1,8 +1,28 @@
 import { Dispatch } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { AuthService } from '../../services/AuthService';
-import { AuthAction, AuthActionTypes, AuthResponse } from '../../types/auth';
+import {
+  AuthAction,
+  AuthActionTypes,
+  AuthResponse,
+  ResponseError,
+} from '../../types/auth';
 import { BASE_URL } from '../../http';
+
+function dispathError(dispatch: Dispatch<AuthAction>, e: unknown) {
+  const error = e as AxiosError<ResponseError>;
+  const message = error?.response?.data?.message;
+
+  if (message) {
+    dispatch({ type: AuthActionTypes.SET_AUTH_ERROR, payload: message });
+    return;
+  }
+
+  dispatch({
+    type: AuthActionTypes.SET_AUTH_ERROR,
+    payload: 'Сервер не доступен',
+  });
+}
 
 export const login = (email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
@@ -16,8 +36,8 @@ export const login = (email: string, password: string) => {
         type: AuthActionTypes.SET_USER,
         payload: authResponse,
       });
-    } catch (e) {
-      console.log(e);
+    } catch (e: unknown) {
+      dispathError(dispatch, e);
     }
   };
 };
@@ -28,12 +48,14 @@ export const registration = (nick: string, email: string, password: string) => {
       const response = await AuthService.registration(nick, email, password);
       const authResponse = response.data;
 
+      localStorage.setItem('token', authResponse.accessToken);
+
       dispatch({
         type: AuthActionTypes.SET_USER,
         payload: authResponse,
       });
     } catch (e) {
-      console.log(e);
+      dispathError(dispatch, e);
     }
   };
 };
@@ -68,3 +90,8 @@ export const checkAuth = () => {
     }
   };
 };
+
+export const setAuthError = (error: string | null): AuthAction => ({
+  type: AuthActionTypes.SET_AUTH_ERROR,
+  payload: error,
+});
