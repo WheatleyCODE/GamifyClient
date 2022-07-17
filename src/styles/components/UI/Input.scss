@@ -1,7 +1,7 @@
 .input {
   position: relative;
   cursor: text;
-  margin-top: 20px;
+  margin-top: 10px;
 
   &__textfild {
     @include Input($colorPrimary);
