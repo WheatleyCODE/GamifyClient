@@ -1,62 +1,47 @@
-export const emailValidator = (str: string) => {
-  let validError: string | null = null;
+import { getValidator } from './getValidator';
 
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const emailValidator = getValidator({
+  email: {
+    value: true,
+    textError: 'Некорректная почта',
+  },
 
-  if (!re.test(String(str).toLowerCase())) {
-    validError = 'Не корректный Email';
-  }
+  noEmpty: {
+    value: true,
+    textError: 'Поле не может быть пустым',
+  },
+});
 
-  if (str.length < 1) {
-    validError = 'Поле не может быть пустым';
-  }
+export const passValidator = getValidator({
+  minLength: {
+    value: 8,
+    textError: 'Пароль должен быть больше 8 символов',
+  },
 
-  return validError;
-};
+  maxLength: {
+    value: 12,
+    textError: 'Пароль должен быть меньше 12 символов',
+  },
 
-export const passwordValidator = (str: string) => {
-  let validError: string | null = null;
+  noEmpty: {
+    value: true,
+    textError: 'Поле не может быть пустым',
+  },
+});
 
-  if (str.length < 8) {
-    validError = 'Пароль должен быть длинее 8 символов';
-  }
+export const nickValidator = getValidator({
+  minLength: {
+    value: 6,
+    textError: 'Имя должно быть больше 6 символов',
+  },
 
-  if (str.length < 1) {
-    validError = 'Поле не может быть пустым';
-  }
+  noEmpty: {
+    value: true,
+    textError: 'Поле не может быть пустым',
+  },
 
-  return validError;
-};
-
-export const lengthValidator = (str: string) => {
-  let validError: string | null = null;
-
-  if (str.length < 5) {
-    validError = 'Имя должно быть длинее 5 символов';
-  }
-
-  if (str.length < 1) {
-    validError = 'Поле не может быть пустым';
-  }
-
-  return validError;
-};
-
-// TODO Сделать генератор валидаторов
-
-// export const getValidator = () => {
-//   return (str: string) => {
-//     let validError: string | null = null;
-
-//     if (str.length < 8) {
-//       validError = 'Пароль должен быть длинее 8 символов';
-//     }
-
-//     if (str.length < 1) {
-//       validError = 'Поле не может быть пустым';
-//     }
-
-//     return validError;
-//   };
-// }
+  maxLength: {
+    value: 14,
+    textError: 'Имя должно быть меньше 14 символов',
+  },
+});

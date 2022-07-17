@@ -15,6 +15,7 @@ export const useValidInput = (fns: UseValidInputOpts): ValidInputOpts => {
   const [value, setValue] = useState('');
   const [validError, setValidError] = useState<null | string>(null);
   const [isTouched, setIsTouched] = useState(false);
+  let couter = 0;
 
   const onBlur = useCallback(() => {
     setIsTouched(true);
@@ -22,9 +23,16 @@ export const useValidInput = (fns: UseValidInputOpts): ValidInputOpts => {
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+
+    if (couter === 0 && e.target.value.length > 2) {
+      setIsTouched(true);
+    }
+
     fns.forEach((fn) => {
       setValidError(fn(e.target.value));
     });
+
+    couter += 1;
   }, []);
 
   return {

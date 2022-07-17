@@ -14,8 +14,8 @@ import { AuthActivateWarn } from './AuthActivateWarn';
 import { useValidInput } from '../../hooks/useValidInput';
 import {
   emailValidator,
-  lengthValidator,
-  passwordValidator,
+  nickValidator,
+  passValidator,
 } from '../../helpers/validators';
 import { isEqual } from '../../utils/isEqual';
 import { getPassError } from '../../utils/getPasswordError';
@@ -32,10 +32,10 @@ export const AuthForm: FC<AuthFormProps> = ({ type, title }) => {
   const { login, registration, setAuthError } = useActions();
   const { user, error } = useTypedSelector((state) => state.auth);
 
-  const nickNameInput = useValidInput([lengthValidator]);
+  const nickNameInput = useValidInput([nickValidator]);
   const emailInput = useValidInput([emailValidator]);
-  const passwordInput = useValidInput([passwordValidator]);
-  const repPasswordInput = useValidInput([passwordValidator]);
+  const passwordInput = useValidInput([passValidator]);
+  const repPasswordInput = useValidInput([passValidator]);
   const [showPass, setShowPass] = useState(false);
 
   const isEqPass = isEqual(passwordInput.value, repPasswordInput.value);
@@ -43,15 +43,6 @@ export const AuthForm: FC<AuthFormProps> = ({ type, title }) => {
     isEqPass,
     passwordInput.isTouched,
     repPasswordInput.isTouched,
-  );
-
-  const handlers = getAuthHandlers(
-    login,
-    registration,
-    emailInput,
-    passwordInput,
-    nickNameInput,
-    passError,
   );
 
   const closeErrors = useDebounce(() => setAuthError(null), 300);
@@ -74,7 +65,19 @@ export const AuthForm: FC<AuthFormProps> = ({ type, title }) => {
       : 'Есть аккаунт? Войти';
 
   const checkboxSetShowPass = useCallback(() => setShowPass((p) => !p), []);
-  const authAction = useCallback(() => handlers[type](), []);
+
+  const handlers = getAuthHandlers(
+    login,
+    registration,
+    emailInput,
+    passwordInput,
+    nickNameInput,
+    passError,
+  );
+
+  const authAction = () => {
+    handlers[type]();
+  };
 
   return (
     <div className="auth-form">
