@@ -2,7 +2,12 @@
   @include flex-center;
   cursor: pointer;
 
-  svg {
-    font-size: $fonsSizeIcons;
+  &__link {
+    @include flex-center;
+    text-decoration: none;
+
+    svg {
+      font-size: $fonsSizeIcons;
+    }
   }
 }

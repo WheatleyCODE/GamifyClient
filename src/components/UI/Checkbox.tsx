@@ -1,18 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { FiCheck } from 'react-icons/fi';
 
 export type CheckboxProps = {
-  children: React.ReactNode;
+  label: string;
   value: boolean;
   onClick: () => void;
 };
 
-export const Checkbox: FC<CheckboxProps> = ({ children, value, onClick }) => {
+export const Checkbox: FC<CheckboxProps> = memo(({ label, value, onClick }) => {
   return (
     <div className="checkbox">
-      <label className="label" htmlFor="checkbox">
-        <div className={`checkbox-square ${value && 'active'}`}>
+      <label className="checkbox__label" htmlFor="checkbox">
+        <div className={`checkbox__square ${value && 'active'}`}>
           <CSSTransition
             mountOnEnter
             unmountOnExit
@@ -23,9 +23,14 @@ export const Checkbox: FC<CheckboxProps> = ({ children, value, onClick }) => {
             <FiCheck />
           </CSSTransition>
         </div>
-        <input onClick={onClick} id="checkbox" type="checkbox" />
-        <div className="text">{children}</div>
+        <input
+          className="checkbox__textfild"
+          onClick={onClick}
+          id="checkbox"
+          type="checkbox"
+        />
+        <div className="checkbox__text">{label}</div>
       </label>
     </div>
   );
-};
+});

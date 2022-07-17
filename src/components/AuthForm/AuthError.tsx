@@ -7,8 +7,8 @@ export type AuthErrorProps = {
 
 export const AuthError: FC<AuthErrorProps> = ({ message }) => {
   return (
-    <div className="authError">
-      <div className="errorIcon">
+    <div className="auth-error">
+      <div className="auth-error__icon">
         <BiErrorCircle />
       </div>
       {message}

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useActions } from '../hooks/useAction';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { AuthForm } from './AuthForm/AuthForm';
-import { Layout } from './Layout/Layout';
+import { AuthForm } from '../components/AuthForm/AuthForm';
+import { Layout } from '../components/Layout/Layout';
 
-export const Home = () => {
+export const HomePage = () => {
   const { loading, users } = useTypedSelector((state) => state.user);
   const { user } = useTypedSelector((state) => state.auth);
   const { fetchUsers, checkAuth } = useActions();
@@ -17,11 +17,10 @@ export const Home = () => {
     if (localStorage.getItem('token')) {
       checkAuth();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="home">
+    <div className="home-page">
       <Layout>
         <AuthForm type="register" title="Регистрация" />
         {loading && <h2>Loading...</h2>}

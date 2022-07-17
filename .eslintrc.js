@@ -37,6 +37,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'default-param-last': 'off',
     'max-len': ['error', 160],
+    'react-hooks/exhaustive-deps': ['warn'],
     'react/function-component-definition': [
       'error',
       {
@@ -45,7 +46,7 @@ module.exports = {
       },
     ],
     'react/require-default-props': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
     'default-param-last': 'off',
     '@typescript-eslint/default-param-last': 'off',
   },

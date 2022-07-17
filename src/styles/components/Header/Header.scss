@@ -4,4 +4,19 @@
   display: flex;
   justify-content: space-between;
   @include Shadow;
+
+  &__section {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-menu-item {
+    font-size: 1.3rem;
+    margin: 0 6px;
+  }
+
+  .header-menu {
+    margin-left: 45px;
+    margin-bottom: -5px;
+  }
 }

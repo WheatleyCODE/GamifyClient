@@ -1,5 +1,8 @@
-.headerMenuItem {
+.header-menu-item {
   padding: 5px 5px;
 
-  @include OnHoverColor($colorOrange)
+  &__link {
+    @include OnHoverColor($colorOrange);
+    text-decoration: none;
+  }
 }

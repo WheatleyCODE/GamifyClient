@@ -1,8 +1,12 @@
-.logoText {
+.logo-text {
   @include flex-center;
   cursor: pointer;
 
-  .title {
+  &__title {
     font-size: 2rem;
+  }
+
+  &__link {
+    text-decoration: none;
   }
 }

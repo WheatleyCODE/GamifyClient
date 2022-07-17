@@ -1,4 +1,4 @@
-.authActivateWarn {
+.auth-activate-warn {
   position: relative;
   width: 100%;
   padding: 20px;
@@ -6,12 +6,12 @@
   border-radius: 5px;
   background-color: $colorDarkYellow;
 
-  .email {
+  &__email {
     font-size: 1.1rem;
     color: $colorOrange;
   }
 
-  .warnIcon {
+  &__icon {
     @include flex-center;
     height: 100%;
     position: absolute;

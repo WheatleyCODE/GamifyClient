@@ -1,9 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+import { HeaderMenuItem, MenuItem } from './HeaderMenuItem';
 
 export type HeaderMenuProps = {
-  children: React.ReactNode;
+  menuItems: MenuItem[];
 };
 
-export const HeaderMenu: FC<HeaderMenuProps> = ({ children }) => {
-  return <div className="headerMenu">{children}</div>;
-};
+export const HeaderMenu: FC<HeaderMenuProps> = memo(({ menuItems }) => {
+  return (
+    <div className="header-menu">
+      {menuItems.map((item) => (
+        <HeaderMenuItem key={item.text} menuItem={item} />
+      ))}
+    </div>
+  );
+});

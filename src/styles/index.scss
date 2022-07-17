@@ -10,14 +10,14 @@
 @import './components/UI/Link.scss';
 @import './components/UI/Checkbox.scss';
 
-@import './components/Home.scss';
 @import './components/Layout/Layout.scss';
 @import './components/Header/Header.scss';
 @import './components/Header/HeaderMenu.scss';
 @import './components/Header/HeaderMenuItem.scss';
-@import './components/Header/HeaderSection.scss';
 @import './components/Logo/Logo.scss';
 @import './components/Logo/LogoText.scss';
 @import './components/AuthForm/AuthForm.scss';
 @import './components/AuthForm/AuthError.scss';
 @import './components/AuthForm/AuthActivateWarn.scss';
+
+@import './pages/HomePage.scss';

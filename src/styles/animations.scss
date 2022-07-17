@@ -1,17 +1,43 @@
 .show-enter-active {
-  animation: defaultShow $animationDuration forwards;
+  animation: default-show $animationDuration forwards;
 }
 
 .show-exit-active {
-  animation: defaultShow $animationDuration forwards reverse;
+  animation: default-show $animationDuration forwards reverse;
 }
 
-@keyframes defaultShow {
+.show-placeholder-enter-active {
+  animation: show-placeholder $animationDuration reverse;
+}
+
+.show-placeholder-enter-done {
+  transform: translateY(0px) translateX(0px) scale(1) ;
+}
+
+.show-placeholder-exit-active {
+  animation: show-placeholder $animationDuration;
+}
+
+.show-placeholder-exit-done {
+  transform: translateY(-27px) translateX(-20px) scale(0.9);
+}
+
+@keyframes default-show {
   0% {
     opacity: 0;
   }
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes show-placeholder {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-27px) translateX(-20px) scale(0.9);
   }
 }

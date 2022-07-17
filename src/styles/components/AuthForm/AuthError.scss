@@ -1,4 +1,4 @@
-.authError {
+.auth-error {
   position: relative;
   width: 100%;
   padding: 20px;
@@ -6,7 +6,7 @@
   border-radius: 5px;
   background-color: $colorLightRed;
 
-  .errorIcon {
+  &__icon {
     @include flex-center;
     height: 100%;
     position: absolute;

@@ -1,24 +1,24 @@
 .button {
 
-  button {
+  &__button {
     padding: 10px;
     color: $colorWhite;
     font-size: 1.1rem;
   }
 
-  button.fill.orange {
+  &__button.fill.orange {
     @include ButtonFill($colorOrange);
   }
 
-  button.fill.primary {
+  &__button.fill.primary {
     @include ButtonFill($colorPrimary);
   }
 
-  button.outline.orange {
+  &__button.outline.orange {
     @include ButtonOutline($colorOrange);
   }
 
-  button.outline.primary {
+  &__button.outline.primary {
     @include ButtonOutline($colorPrimary);
   }
 }

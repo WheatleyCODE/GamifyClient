@@ -7,12 +7,12 @@ export type AuthActivateWarnProps = {
 
 export const AuthActivateWarn: FC<AuthActivateWarnProps> = ({ email }) => {
   return (
-    <div className="authActivateWarn">
-      <div className="warnIcon">
+    <div className="auth-activate-warn">
+      <div className="auth-activate-warn__icon">
         <MdOutlineMarkEmailRead />
       </div>
-      На вашу почту: <span className="email">{email}</span> было отправлено
-      письмо с ссылкой для активации аккаунта
+      На вашу почту: <span className="auth-activate-warn__email">{email}</span>
+      было отправлено письмо с ссылкой для активации аккаунта
     </div>
   );
 };

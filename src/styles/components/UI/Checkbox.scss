@@ -3,32 +3,32 @@
   display: flex;
   align-items: center;
 
-  .label {
+  &__label {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
   }
 
-  input[type="checkbox"] {
+  &__textfild {
     display: none;
   }
 
-  .text {
+  &__text {
     margin-left: 10px;
     height: 100%;
     margin-bottom: -1px
   }
-}
 
-.checkbox-square {
-  @include flex-center;
-  transition: outline $animationDuration;
-  height: 20px;
-  width: 20px;
-  border: 1px solid $colorLightGrey;
-  border-radius: 3px;
-}
+  &__square {
+    @include flex-center;
+    transition: outline $animationDuration;
+    height: 20px;
+    width: 20px;
+    border: 1px solid $colorLightGrey;
+    border-radius: 3px;
+  }
 
-.checkbox-square.active {
-  outline: 1px solid $colorPrimary;
+  &__square.active {
+    outline: 1px solid $colorPrimary;
+  }
 }
