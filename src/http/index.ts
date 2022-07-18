@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import { AuthResponse } from '../types/auth';
+import { StorageKeys } from '../types/localStorage';
 
 export const BASE_URL = 'http://192.168.0.100:5000';
 
@@ -10,7 +11,10 @@ const axiosIstance = axios.create({
 });
 
 axiosIstance.interceptors.request.use((config: any) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem(
+    StorageKeys.ACCESS_TOKEN,
+  )}`;
+
   return config;
 });
 
@@ -34,7 +38,10 @@ axiosIstance.interceptors.response.use(
           { withCredentials: true },
         );
         const authResponse = res.data;
-        localStorage.setItem('token', authResponse.accessToken);
+        localStorage.setItem(
+          StorageKeys.ACCESS_TOKEN,
+          authResponse.accessToken,
+        );
 
         return await axiosIstance.request(originalRequest);
       } catch (e) {

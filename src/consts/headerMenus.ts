@@ -6,18 +6,18 @@ export const headerMenu = [
     path: PathRoutes.HOME,
   },
   {
-    text: 'Клиенты',
-    path: PathRoutes.HOME,
+    text: 'Вход',
+    path: PathRoutes.LOGIN,
   },
   {
-    text: 'Заказы',
-    path: PathRoutes.HOME,
+    text: 'Регистрация',
+    path: PathRoutes.REGISTER,
   },
 ];
 
 export const headerMenuAuth = [
   {
-    text: 'Туду',
+    text: 'Задачи',
     path: PathRoutes.HOME,
   },
   {
@@ -25,7 +25,7 @@ export const headerMenuAuth = [
     path: PathRoutes.HOME,
   },
   {
-    text: 'Соцсеть',
+    text: 'Cоцсеть',
     path: PathRoutes.HOME,
   },
 ];

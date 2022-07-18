@@ -1,6 +1,14 @@
 .header-menu-item {
   padding: 5px 5px;
 
+  &__link.active {
+    color: $colorOrange;
+
+    &:hover {
+      color: $colorOrange;
+    }
+  }
+
   &__link {
     @include OnHoverColor($colorOrange);
     text-decoration: none;

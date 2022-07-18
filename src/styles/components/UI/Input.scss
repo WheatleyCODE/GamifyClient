@@ -44,7 +44,7 @@
   }
 }
 
-.input__icon:hover .input__textfild, .input__placeholder:hover .input__textfild {
+.input.icon:hover .input__textfild {
   outline: 1px solid $colorLightPrimary;
 }
 

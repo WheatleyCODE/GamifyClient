@@ -5,6 +5,11 @@
 @import './mixins';
 @import './globals.scss';
 
+@import './components/design/Hills.scss';
+@import './components/design/Mountains.scss';
+@import './components/design/Stars.scss';
+@import './components/design/Resources.scss';
+
 @import './components/UI/Button.scss';
 @import './components/UI/Input.scss';
 @import './components/UI/Link.scss';
@@ -21,3 +26,5 @@
 @import './components/AuthForm/AuthActivateWarn.scss';
 
 @import './pages/HomePage.scss';
+@import './pages/LoginPage.scss';
+@import './pages/PegisterPage.scss';

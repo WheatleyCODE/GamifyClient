@@ -26,7 +26,7 @@
 }
 
 @mixin Shadow {
-  box-shadow: 0 0 6px 0 $colorShadow;
+  box-shadow: 0 0 2px 0 $colorShadow;
 }
 
 @mixin Input($color) {

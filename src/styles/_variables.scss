@@ -1,4 +1,4 @@
-$colorRed: rgb(255, 32, 32);
+$colorRed: #dc3545;
 $colorOrange: rgb(255, 115, 0);
 $colorLightRed: rgb(255, 200, 200);
 $colorDarkYellow: rgb(255, 243, 192);
@@ -7,13 +7,14 @@ $colorLightGrey: rgb(225, 225, 225);
 $colorDarkGrey: rgb(59, 59, 59);
 $colorWhite: white;
 
-$colorPrimary: rgb(32, 106, 255);
+$colorPrimary: #0d6efd;
+$colorViolet: #6133b4;
 $colorLightPrimary: rgb(141, 179, 255);
 
 $colorShadow: rgb(155, 155, 158);
 
-$headerHeight: 80px;
-$paddingEdge: 30px;
+$headerHeight: 110px;
+$paddingEdge: 80px;
 $headerPaddingTopAndBottom: 16px;
 $fonsSizeIcons: 2rem;
 $animationDuration: 0.15s

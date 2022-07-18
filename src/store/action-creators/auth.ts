@@ -8,6 +8,7 @@ import {
   ResponseError,
 } from '../../types/auth';
 import { BASE_URL } from '../../http';
+import { StorageKeys } from '../../types/localStorage';
 
 function dispathError(dispatch: Dispatch<AuthAction>, e: unknown) {
   const error = e as AxiosError<ResponseError>;
@@ -30,7 +31,7 @@ export const login = (email: string, password: string) => {
       const response = await AuthService.login(email, password);
       const authResponse = response.data;
 
-      localStorage.setItem('token', authResponse.accessToken);
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
 
       dispatch({
         type: AuthActionTypes.SET_USER,
@@ -48,7 +49,7 @@ export const registration = (nick: string, email: string, password: string) => {
       const response = await AuthService.registration(nick, email, password);
       const authResponse = response.data;
 
-      localStorage.setItem('token', authResponse.accessToken);
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
 
       dispatch({
         type: AuthActionTypes.SET_USER,
@@ -65,7 +66,7 @@ export const logout = () => {
     try {
       await AuthService.logout();
 
-      localStorage.removeItem('token');
+      localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
 
       dispatch({ type: AuthActionTypes.REMOVE_USER });
     } catch (e) {
@@ -82,7 +83,7 @@ export const checkAuth = () => {
         { withCredentials: true },
       );
       const authResponse = res.data;
-      localStorage.setItem('token', authResponse.accessToken);
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
 
       dispatch({ type: AuthActionTypes.SET_USER, payload: authResponse });
     } catch (e) {
