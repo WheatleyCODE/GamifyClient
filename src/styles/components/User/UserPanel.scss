@@ -1,0 +1,26 @@
+.user-panel {
+  cursor: pointer;
+
+  &__user {
+    padding: 0 15px;
+    height: 42px;
+    border: 1px solid $colorLightGrey;
+    border-radius: 3px;
+    transition: outline $animationDuration;
+    @include flex-center;
+
+    svg {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    &:hover {
+      outline: 1px solid $colorPrimary;
+    }
+  }
+
+  &__nick-name {
+    margin-right: 8px;
+    font-size: 1.1rem;
+  }
+}

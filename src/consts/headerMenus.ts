@@ -18,14 +18,14 @@ export const headerMenu = [
 export const headerMenuAuth = [
   {
     text: 'Задачи',
-    path: PathRoutes.HOME,
+    path: PathRoutes.DASHBOARD,
   },
   {
     text: 'Хранилище',
-    path: PathRoutes.HOME,
+    path: PathRoutes.REGISTER,
   },
   {
     text: 'Cоцсеть',
-    path: PathRoutes.HOME,
+    path: PathRoutes.LOGIN,
   },
 ];

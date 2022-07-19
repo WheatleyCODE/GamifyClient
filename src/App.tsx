@@ -4,18 +4,20 @@ import { AppLoader } from './components/design/AppLoader';
 import { useActions } from './hooks/useAction';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { HomePage } from './pages/HomePage';
-import { routes } from './routes/routes';
+import { routes, routesAuth } from './routes/routes';
 import { StorageKeys } from './types/localStorage';
 
 export const App = () => {
   const { checkAuth } = useActions();
-  const { loading } = useTypedSelector((state) => state.auth);
+  const { loading, isAuth } = useTypedSelector((state) => state.auth);
 
   useEffect(() => {
     if (localStorage.getItem(StorageKeys.ACCESS_TOKEN)) {
       checkAuth();
     }
   }, []);
+
+  const appRoutes = isAuth ? routesAuth : routes;
 
   if (loading) {
     return <AppLoader />;
@@ -24,7 +26,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {routes.map(({ path, Page }) => (
+        {appRoutes.map(({ path, Page }) => (
           <Route key={path} path={path} element={<Page />} />
         ))}
         <Route path="*" element={<HomePage />} />
