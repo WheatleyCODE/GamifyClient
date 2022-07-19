@@ -97,6 +97,7 @@ export const logout = () => {
 export const checkAuth = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
+      dispatch({ type: AuthActionTypes.SET_LOADING, payload: true });
       const res = await axios.get<AuthResponse>(
         `${BASE_URL}/api/auth/refresh`,
         { withCredentials: true },
@@ -106,8 +107,9 @@ export const checkAuth = () => {
       localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
 
       dispatch({ type: AuthActionTypes.SET_USER, payload: data });
+      dispatch({ type: AuthActionTypes.SET_LOADING, payload: false });
     } catch (e) {
-      console.log(e);
+      dispatch({ type: AuthActionTypes.SET_LOADING, payload: false });
     }
   };
 };

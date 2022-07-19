@@ -38,6 +38,7 @@ export enum AuthActionTypes {
   SET_USER = 'SET_USER',
   REMOVE_USER = 'REMOVE_USER',
   SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE',
+  SET_LOADING = 'SET_LOADING',
 }
 
 interface SetAuthMessageAction {
@@ -49,6 +50,11 @@ interface SetUserAction {
   payload: AuthResponse;
 }
 
+interface SetLoadingAction {
+  type: AuthActionTypes.SET_LOADING;
+  payload: boolean;
+}
+
 interface RemoveUserAction {
   type: AuthActionTypes.REMOVE_USER;
 }
@@ -56,4 +62,5 @@ interface RemoveUserAction {
 export type AuthAction =
   | SetUserAction
   | RemoveUserAction
-  | SetAuthMessageAction;
+  | SetAuthMessageAction
+  | SetLoadingAction;

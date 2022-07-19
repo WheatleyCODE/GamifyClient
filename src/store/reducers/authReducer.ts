@@ -15,6 +15,10 @@ export const authReducer = (
   action: AuthAction,
 ): AuthState => {
   switch (action.type) {
+    case AuthActionTypes.SET_LOADING: {
+      return { ...state, loading: action.payload };
+    }
+
     case AuthActionTypes.SET_USER: {
       const { user, accessToken, refreshToken } = action.payload;
       return { ...state, isAuth: true, user, accessToken, refreshToken };
