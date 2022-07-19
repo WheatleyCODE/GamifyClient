@@ -7,7 +7,7 @@ const initialState: AuthState = {
   accessToken: '',
   refreshToken: '',
   loading: false,
-  error: null,
+  message: null,
 };
 
 export const authReducer = (
@@ -29,8 +29,14 @@ export const authReducer = (
         refreshToken: '',
       };
 
-    case AuthActionTypes.SET_AUTH_ERROR: {
-      return { ...state, error: action.payload };
+    case AuthActionTypes.SET_AUTH_MESSAGE: {
+      const data = action.payload;
+
+      if (data) {
+        return { ...state, message: { ...data } };
+      }
+
+      return { ...state, message: data };
     }
 
     default:

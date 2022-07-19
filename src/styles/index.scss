@@ -21,10 +21,16 @@
 @import './components/Header/HeaderMenuItem.scss';
 @import './components/Logo/Logo.scss';
 @import './components/Logo/LogoText.scss';
-@import './components/AuthForm/AuthForm.scss';
-@import './components/AuthForm/AuthError.scss';
-@import './components/AuthForm/AuthActivateWarn.scss';
+
+@import './components/Forms/Form/Form.scss';
+@import './components/Forms/Form/FormMessage.scss';
+@import './components/Forms/RegisterForm.scss';
+@import './components/Forms/LoginForm.scss';
+@import './components/Forms/ChangePasswordForm.scss';
+@import './components/Forms/ResetPasswordForm.scss';
 
 @import './pages/HomePage.scss';
 @import './pages/LoginPage.scss';
 @import './pages/PegisterPage.scss';
+@import './pages/ResetPasswordPage.scss';
+@import './pages/ChangePasswordPage.scss';

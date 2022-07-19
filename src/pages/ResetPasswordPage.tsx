@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useActions } from '../hooks/useAction';
-import { RegisterForm } from '../components/Forms/RegisterForm';
 import { Layout } from '../components/Layout/Layout';
 import { StorageKeys } from '../types/localStorage';
 import { Stars } from '../components/design/Stars';
 import { Mountains } from '../components/design/Mountans';
 import { Hills } from '../components/design/Hills';
+import { ResetPasswordForm } from '../components/Forms/ResetPasswordForm';
 
-export const RegisterPage = () => {
+export const ResetPasswordPage = () => {
   const { checkAuth } = useActions();
 
   useEffect(() => {
@@ -18,8 +18,8 @@ export const RegisterPage = () => {
 
   return (
     <Layout>
-      <div className="register-page">
-        <RegisterForm />
+      <div className="reset-password-page">
+        <ResetPasswordForm />
         <Stars />
         <Mountains />
         <Hills />

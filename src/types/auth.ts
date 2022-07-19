@@ -6,9 +6,23 @@ export interface AuthResponse {
   user: User;
 }
 
+export interface ResetPassResponse {
+  message: string;
+  email: string;
+}
+
+export interface ChangePassResponse {
+  message: string;
+}
+
 export interface ResponseError {
   message: string;
   statusCode: number;
+}
+
+export interface AuthMessage {
+  color: 'green' | 'yellow' | 'red';
+  text: string;
 }
 
 export interface AuthState {
@@ -17,18 +31,18 @@ export interface AuthState {
   accessToken: string;
   refreshToken: string;
   loading: boolean;
-  error: null | string;
+  message: null | AuthMessage;
 }
 
 export enum AuthActionTypes {
   SET_USER = 'SET_USER',
   REMOVE_USER = 'REMOVE_USER',
-  SET_AUTH_ERROR = 'SET_AUTH_ERROR',
+  SET_AUTH_MESSAGE = 'SET_AUTH_MESSAGE',
 }
 
-interface SetAuthErrorAction {
-  type: AuthActionTypes.SET_AUTH_ERROR;
-  payload: string | null;
+interface SetAuthMessageAction {
+  type: AuthActionTypes.SET_AUTH_MESSAGE;
+  payload: AuthMessage | null;
 }
 interface SetUserAction {
   type: AuthActionTypes.SET_USER;
@@ -39,4 +53,7 @@ interface RemoveUserAction {
   type: AuthActionTypes.REMOVE_USER;
 }
 
-export type AuthAction = SetUserAction | RemoveUserAction | SetAuthErrorAction;
+export type AuthAction =
+  | SetUserAction
+  | RemoveUserAction
+  | SetAuthMessageAction;

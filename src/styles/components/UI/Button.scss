@@ -21,4 +21,13 @@
   &__button.outline.primary {
     @include ButtonOutline($colorPrimary);
   }
+
+  &__button.disable {
+    background-color: rgb(175, 175, 175) !important;
+    border: 1px solid rgb(175, 175, 175) !important;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
 }

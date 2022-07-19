@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useActions } from '../hooks/useAction';
-import { AuthForm } from '../components/AuthForm/AuthForm';
 import { Layout } from '../components/Layout/Layout';
 import { StorageKeys } from '../types/localStorage';
 import { Stars } from '../components/design/Stars';
 import { Mountains } from '../components/design/Mountans';
 import { Hills } from '../components/design/Hills';
+import { LoginForm } from '../components/Forms/LoginForm';
 
 export const LoginPage = () => {
   const { checkAuth } = useActions();
@@ -19,7 +19,7 @@ export const LoginPage = () => {
   return (
     <Layout>
       <div className="login-page">
-        <AuthForm type="login" title="Вход" />
+        <LoginForm />
         <Stars />
         <Mountains />
         <Hills />

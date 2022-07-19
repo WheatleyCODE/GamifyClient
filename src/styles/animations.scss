@@ -3,7 +3,7 @@
 }
 
 .show-exit-active {
-  animation: default-show $animationDuration forwards reverse;
+  animation: default-show $animationDuration reverse forwards;
 }
 
 .show-placeholder-enter-active {
@@ -40,4 +40,37 @@
   100% {
     transform: translateY(-27px) translateX(-20px) scale(0.9);
   }
+}
+
+@keyframes show-message {
+  0% {
+    opacity: 0;
+    height: 0px;
+    margin-top: 0px;
+  }
+
+
+  100% {
+    height: auto;
+    margin-top: 40px;
+    opacity: 1;
+  }
+}
+
+.show-message-enter-active {
+  animation: show-message $animationDuration;
+}
+
+.show-message-enter-done {
+  margin-top: 40px;
+  height: auto;
+}
+
+.show-message-exit-active {
+  animation: show-message $animationDuration reverse;
+}
+
+.show-message-exit-done {
+  margin-top: 0px;
+  height: 0px;
 }

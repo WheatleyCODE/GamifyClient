@@ -4,41 +4,59 @@ import { AuthService } from '../../services/AuthService';
 import {
   AuthAction,
   AuthActionTypes,
+  AuthMessage,
   AuthResponse,
   ResponseError,
 } from '../../types/auth';
 import { BASE_URL } from '../../http';
 import { StorageKeys } from '../../types/localStorage';
 
-function dispathError(dispatch: Dispatch<AuthAction>, e: unknown) {
+function dispathAuthMessage(dispatch: Dispatch<AuthAction>, e: unknown) {
   const error = e as AxiosError<ResponseError>;
   const message = error?.response?.data?.message;
 
   if (message) {
-    dispatch({ type: AuthActionTypes.SET_AUTH_ERROR, payload: message });
+    dispatch({
+      type: AuthActionTypes.SET_AUTH_MESSAGE,
+      payload: {
+        color: 'red',
+        text: message,
+      },
+    });
     return;
   }
 
   dispatch({
-    type: AuthActionTypes.SET_AUTH_ERROR,
-    payload: 'Сервер не доступен',
+    type: AuthActionTypes.SET_AUTH_MESSAGE,
+    payload: {
+      color: 'red',
+      text: 'Сервер не доступен',
+    },
   });
 }
 
 export const login = (email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      const response = await AuthService.login(email, password);
-      const authResponse = response.data;
+      const res = await AuthService.login(email, password);
+      const { data } = res;
 
-      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
 
       dispatch({
         type: AuthActionTypes.SET_USER,
-        payload: authResponse,
+        payload: data,
+      });
+
+      dispatch({
+        type: AuthActionTypes.SET_AUTH_MESSAGE,
+        payload: {
+          color: 'green',
+          text: 'Вы успешно вошли в аккаунт',
+        },
       });
     } catch (e: unknown) {
-      dispathError(dispatch, e);
+      dispathAuthMessage(dispatch, e);
     }
   };
 };
@@ -46,17 +64,18 @@ export const login = (email: string, password: string) => {
 export const registration = (nick: string, email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      const response = await AuthService.registration(nick, email, password);
-      const authResponse = response.data;
-
-      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
+      const res = await AuthService.registration(nick, email, password);
+      const { data } = res;
 
       dispatch({
-        type: AuthActionTypes.SET_USER,
-        payload: authResponse,
+        type: AuthActionTypes.SET_AUTH_MESSAGE,
+        payload: {
+          color: 'yellow',
+          text: 'На вашу почту было выслано письмо с ссылкой для активации аккаунта',
+        },
       });
     } catch (e) {
-      dispathError(dispatch, e);
+      dispathAuthMessage(dispatch, e);
     }
   };
 };
@@ -82,17 +101,72 @@ export const checkAuth = () => {
         `${BASE_URL}/api/auth/refresh`,
         { withCredentials: true },
       );
-      const authResponse = res.data;
-      localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
 
-      dispatch({ type: AuthActionTypes.SET_USER, payload: authResponse });
+      const { data } = res;
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
+
+      dispatch({ type: AuthActionTypes.SET_USER, payload: data });
     } catch (e) {
       console.log(e);
     }
   };
 };
 
-export const setAuthError = (error: string | null): AuthAction => ({
-  type: AuthActionTypes.SET_AUTH_ERROR,
-  payload: error,
+export const setAuthMessage = (message: AuthMessage | null): AuthAction => ({
+  type: AuthActionTypes.SET_AUTH_MESSAGE,
+  payload: message,
 });
+
+export const resetPassword = (email: string) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    try {
+      await AuthService.resetPassword(email);
+
+      dispatch({
+        type: AuthActionTypes.SET_AUTH_MESSAGE,
+        payload: {
+          color: 'yellow',
+          text: 'На вашу почту было выслано письмо с ссылкой для сброса пароля',
+        },
+      });
+    } catch (e) {
+      dispathAuthMessage(dispatch, e);
+    }
+  };
+};
+
+export const changePassword = (password: string, link: string) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    try {
+      await AuthService.changePassword(password, link);
+
+      dispatch({
+        type: AuthActionTypes.SET_AUTH_MESSAGE,
+        payload: {
+          color: 'green',
+          text: 'Пароль успешно изменен',
+        },
+      });
+    } catch (e) {
+      dispathAuthMessage(dispatch, e);
+    }
+  };
+};
+
+export const loginByActivationLink = (link: string) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    try {
+      const res = await AuthService.loginByActivationLink(link);
+      const { data } = res;
+
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
+
+      dispatch({
+        type: AuthActionTypes.SET_USER,
+        payload: data,
+      });
+    } catch (e) {
+      //  Todo редирект на логин
+    }
+  };
+};

@@ -1,0 +1,43 @@
+.form-message {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 3px;
+
+  &__icon {
+    @include flex-center;
+    font-size: 1.6rem;
+    margin-right: 15px;
+  }
+
+  &__close {
+    @include flex-center;
+    position: absolute;
+    font-size: 1.3rem;
+    opacity: 0.35;
+    height: 30px;
+    width: 30px;
+    right: 4px;
+    top: 4px;
+    transition: transform $animationDuration;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.form-message.green {
+  background-color: $colorLightGreen;
+}
+
+.form-message.yellow {
+  background-color: $colorLightYellow;
+}
+
+.form-message.red {
+  background-color: $colorLightRed;
+}

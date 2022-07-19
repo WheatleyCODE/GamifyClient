@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { useActions } from '../hooks/useAction';
-import { useTypedSelector } from '../hooks/useTypedSelector';
-import { AuthForm } from '../components/AuthForm/AuthForm';
+import { RegisterForm } from '../components/Forms/RegisterForm';
 import { Layout } from '../components/Layout/Layout';
 import { StorageKeys } from '../types/localStorage';
 import { Resources } from '../components/design/Resources';
@@ -33,7 +32,7 @@ export const HomePage = () => {
             </div>
           </div>
 
-          <AuthForm type="register" title="Регистрация" />
+          <RegisterForm />
         </div>
 
         <div className="home-page__arrow">
