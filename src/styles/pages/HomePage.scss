@@ -17,7 +17,7 @@
   &__section:first-child {
     height: calc(100vh - 110px);
     align-items: center;
-    background: linear-gradient(0deg, #6133b4 0%, #6133b4 20%, rgb(255, 255, 255) 100%);
+    background: $homePageGradient;
   }
 
   &__image {
@@ -62,7 +62,7 @@
     h1 {
       margin: 0;
       text-align: center;
-      font-family: 'RubicBold';
+      font-family: 'RubikBold';
       color: $colorWhite;
       text-shadow: 1px 1px 5px $colorBlack; 
     }

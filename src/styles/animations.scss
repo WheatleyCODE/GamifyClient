@@ -22,6 +22,24 @@
   transform: translateY(-27px) translateX(-20px) scale(0.9);
 }
 
+.show-message-enter-active {
+  animation: show-message $animationDuration;
+}
+
+.show-message-enter-done {
+  margin-top: 40px;
+  height: auto;
+}
+
+.show-message-exit-active {
+  animation: show-message $animationDuration reverse;
+}
+
+.show-message-exit-done {
+  margin-top: 0px;
+  height: 0px;
+}
+
 @keyframes default-show {
   0% {
     opacity: 0;
@@ -57,20 +75,12 @@
   }
 }
 
-.show-message-enter-active {
-  animation: show-message $animationDuration;
-}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
 
-.show-message-enter-done {
-  margin-top: 40px;
-  height: auto;
-}
-
-.show-message-exit-active {
-  animation: show-message $animationDuration reverse;
-}
-
-.show-message-exit-done {
-  margin-top: 0px;
-  height: 0px;
+  100% {
+    opacity: 0.7;
+  }
 }
