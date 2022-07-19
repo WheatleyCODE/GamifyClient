@@ -23,9 +23,7 @@ export const Button: FC<ButtonProps> = memo((props) => {
   return (
     <div className="button">
       <button
-        className={`button__button ${type} ${color} ${
-          disable ? 'disable' : ''
-        }`}
+        className={`button__button ${type} ${color} ${disable ? 'disable' : ''}`}
         onClick={onClickHandler}
         type="button"
       >

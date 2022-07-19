@@ -50,7 +50,7 @@ export const login = (email: string, password: string, redirect: () => void) => 
         },
       });
 
-      // * Что бы успело показаться сообщение об удачном входе
+      // * Что-бы успело показаться сообщение об удачном входе
       setTimeout(redirect, 1000);
     } catch (e: unknown) {
       dispathAuthMessage(dispatch, e);
@@ -61,8 +61,7 @@ export const login = (email: string, password: string, redirect: () => void) => 
 export const registration = (nick: string, email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      const res = await AuthService.registration(nick, email, password);
-      const { data } = res;
+      await AuthService.registration(nick, email, password);
 
       dispatch({
         type: AuthActionTypes.SET_AUTH_MESSAGE,
@@ -149,7 +148,7 @@ export const changePassword = (password: string, link: string) => {
   };
 };
 
-export const loginByActivationLink = (link: string) => {
+export const loginByActivationLink = (link: string, redirect: () => void) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const res = await AuthService.loginByActivationLink(link);
@@ -162,7 +161,7 @@ export const loginByActivationLink = (link: string) => {
         payload: data,
       });
     } catch (e) {
-      //  Todo редирект на логин
+      redirect();
     }
   };
 };

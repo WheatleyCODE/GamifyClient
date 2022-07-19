@@ -12,10 +12,7 @@ export const HomePage = () => {
           <Resources />
 
           <div className="home-page__image">
-            <img
-              alt="home"
-              src="https://habitica.com/static/img/home-main@3x.23eeafe4.png"
-            />
+            <img alt="home" src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" />
 
             <div className="home-page__title">
               <h1>GAMIFY PROJECT</h1>

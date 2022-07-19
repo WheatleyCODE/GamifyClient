@@ -1,11 +1,4 @@
-import React, {
-  FC,
-  memo,
-  RefObject,
-  useCallback,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, memo, useCallback, useRef, useState } from 'react';
 import { IconType } from 'react-icons';
 import { CSSTransition } from 'react-transition-group';
 
@@ -22,22 +15,12 @@ export type InputProps = {
 };
 
 export const Input: FC<InputProps> = memo((props) => {
-  const {
-    Icon,
-    isError,
-    validError,
-    onBlur,
-    onFocus,
-    onChange,
-    placeholder,
-    value,
-    type,
-  } = props;
-  const ref = useRef<RefObject<HTMLInputElement> | any>(null);
+  const { Icon, isError, validError, onBlur, onFocus, onChange, placeholder, value, type } = props;
+  const ref = useRef<null | HTMLInputElement>(null);
   const [isFocus, setIsFocus] = useState(false);
 
   const focusOnInput = useCallback(() => {
-    ref.current.focus();
+    if (ref.current) ref.current.focus();
   }, []);
 
   const onFocusInput = useCallback(
@@ -71,6 +54,7 @@ export const Input: FC<InputProps> = memo((props) => {
           <MemoIcon />
         </div>
       )}
+
       <input
         className="input__textfild"
         ref={ref}
@@ -80,6 +64,7 @@ export const Input: FC<InputProps> = memo((props) => {
         onFocus={onFocusInput}
         onBlur={onBlurInput}
       />
+
       <CSSTransition
         mountOnEnter
         unmountOnExit
@@ -90,17 +75,11 @@ export const Input: FC<InputProps> = memo((props) => {
         <div className="input__valid-error">{validError}</div>
       </CSSTransition>
 
-      <CSSTransition
-        in={!!placeholder && !isFocus && !value}
-        timeout={145}
-        classNames="show-placeholder"
-      >
+      <CSSTransition in={!!placeholder && !isFocus && !value} timeout={145} classNames="show-placeholder">
         <div
           aria-hidden
           onClick={focusOnInput}
-          className={`input__placeholder ${
-            (value || isFocus) && 'show-placeholder-exit-done'
-          }`}
+          className={`input__placeholder ${(value || isFocus) && 'show-placeholder-exit-done'}`}
         >
           {placeholder}
         </div>

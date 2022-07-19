@@ -59,8 +59,4 @@ interface RemoveUserAction {
   type: AuthActionTypes.REMOVE_USER;
 }
 
-export type AuthAction =
-  | SetUserAction
-  | RemoveUserAction
-  | SetAuthMessageAction
-  | SetLoadingAction;
+export type AuthAction = SetUserAction | RemoveUserAction | SetAuthMessageAction | SetLoadingAction;

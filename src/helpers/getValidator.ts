@@ -1,3 +1,4 @@
+// ! Плохо
 export type GetValidatorOptions = {
   noEmpty?: {
     value: boolean;

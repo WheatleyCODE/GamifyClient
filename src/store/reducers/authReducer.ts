@@ -10,10 +10,7 @@ const initialState: AuthState = {
   message: null,
 };
 
-export const authReducer = (
-  state = initialState,
-  action: AuthAction,
-): AuthState => {
+export const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
     case AuthActionTypes.SET_LOADING: {
       return { ...state, loading: action.payload };
@@ -36,9 +33,7 @@ export const authReducer = (
     case AuthActionTypes.SET_AUTH_MESSAGE: {
       const data = action.payload;
 
-      if (data) {
-        return { ...state, message: { ...data } };
-      }
+      if (data) return { ...state, message: { ...data } };
 
       return { ...state, message: data };
     }

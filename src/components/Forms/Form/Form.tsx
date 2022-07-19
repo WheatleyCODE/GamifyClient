@@ -30,13 +30,7 @@ export const Form: FC<FormProps> = ({ title, children }) => {
       {children}
 
       {!isFirst && (
-        <CSSTransition
-          mountOnEnter
-          unmountOnExit
-          in={!!message}
-          timeout={145}
-          classNames="show-message"
-        >
+        <CSSTransition mountOnEnter unmountOnExit in={!!message} timeout={145} classNames="show-message">
           <FormMessage color={message?.color} text={message?.text} />
         </CSSTransition>
       )}

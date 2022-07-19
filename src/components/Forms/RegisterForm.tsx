@@ -8,11 +8,7 @@ import { useActions } from '../../hooks/useAction';
 import { Link } from '../UI/Link';
 import { Checkbox } from '../UI/Checkbox';
 import { useValidInput } from '../../hooks/useValidInput';
-import {
-  emailValidator,
-  nickValidator,
-  passValidator,
-} from '../../helpers/validators';
+import { emailValidator, nickValidator, passValidator } from '../../helpers/validators';
 import { isEqual } from '../../utils/isEqual';
 import { getPassError } from '../../utils/getPasswordError';
 import { PathRoutes } from '../../types/routes';
@@ -20,9 +16,8 @@ import { Form } from './Form/Form';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const RegisterForm: FC = () => {
-  const { registration, setAuthMessage } = useActions();
+  const { registration } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
-
   const nickNameInput = useValidInput([nickValidator]);
   const emailInput = useValidInput([emailValidator]);
   const passwordInput = useValidInput([passValidator]);
@@ -31,16 +26,10 @@ export const RegisterForm: FC = () => {
   const [isDisable, setIsDisable] = useState(false);
 
   const isEqPass = isEqual(passwordInput.value, repPasswordInput.value);
-  const passError = getPassError(
-    isEqPass,
-    passwordInput.isTouched,
-    repPasswordInput.isTouched,
-  );
+  const passError = getPassError(isEqPass, passwordInput.isTouched, repPasswordInput.isTouched);
 
   useEffect(() => {
-    if (message) {
-      setIsDisable(false);
-    }
+    if (message) setIsDisable(false);
   }, [message]);
 
   const changeShowPass = useCallback(() => setShowPass((p) => !p), []);
@@ -104,11 +93,7 @@ export const RegisterForm: FC = () => {
 
         <div className="register-form__container">
           <div className="register-form__checkbox">
-            <Checkbox
-              label="Показать пароли"
-              value={showPass}
-              onClick={changeShowPass}
-            />
+            <Checkbox label="Показать пароли" value={showPass} onClick={changeShowPass} />
           </div>
           <div className="register-form__forgot-password">
             <Link text="Забыли пароль?" href={PathRoutes.RESET_PASSWORD} />
@@ -117,11 +102,7 @@ export const RegisterForm: FC = () => {
 
         <hr className="register-form__hr" />
 
-        <Button
-          disable={isDisable}
-          onClick={registerHandler}
-          text="Зарегистрироваться"
-        />
+        <Button disable={isDisable} onClick={registerHandler} text="Зарегистрироваться" />
 
         <div className="register-form__link">
           <Link text="Есть аккаунт? Войти" href={PathRoutes.LOGIN} />

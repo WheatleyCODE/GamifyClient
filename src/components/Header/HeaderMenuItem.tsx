@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PathRoutes } from '../../types/routes';
 
@@ -11,8 +11,9 @@ export type HeaderMenuItemProps = {
   menuItem: MenuItem;
 };
 
-export const HeaderMenuItem: FC<HeaderMenuItemProps> = memo(({ menuItem }) => {
+export const HeaderMenuItem: FC<HeaderMenuItemProps> = ({ menuItem }) => {
   const { path, text } = menuItem;
+
   return (
     <div className="header-menu-item">
       <NavLink className="header-menu-item__link" to={path}>
@@ -20,4 +21,4 @@ export const HeaderMenuItem: FC<HeaderMenuItemProps> = memo(({ menuItem }) => {
       </NavLink>
     </div>
   );
-});
+};

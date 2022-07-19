@@ -1,8 +1,4 @@
-export const getPassError = (
-  isEqual: boolean,
-  isTouchOne: boolean,
-  isTouchTwo: boolean,
-) => {
+export const getPassError = (isEqual: boolean, isTouchOne: boolean, isTouchTwo: boolean) => {
   if (!isEqual && isTouchOne && isTouchTwo) {
     return 'Пароли не совпадают';
   }

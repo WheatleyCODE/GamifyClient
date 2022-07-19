@@ -18,7 +18,6 @@ export const FormMessage: FC<FormMessageProps> = memo(({ text, color }) => {
         <BiErrorCircle />
       </div>
       {text}
-
       <div aria-hidden onClick={close} className="form-message__close">
         <CgClose />
       </div>

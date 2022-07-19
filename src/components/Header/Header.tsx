@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { headerMenu, headerMenuAuth } from '../../consts/headerMenus';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -9,17 +9,14 @@ import { Button } from '../UI/Button';
 import { UserPanel } from '../User/UserPanel';
 import { HeaderMenu } from './HeaderMenu';
 
-export const Header: FC = memo(() => {
+export const Header: FC = () => {
   const navigate = useNavigate();
   const { isAuth } = useTypedSelector((state) => state.auth);
   const toLogin = useCallback(() => navigate(PathRoutes.LOGIN), [navigate]);
 
   const headerMenuItems = isAuth ? headerMenuAuth : headerMenu;
-  const rightSide = isAuth ? (
-    <UserPanel />
-  ) : (
-    <Button onClick={toLogin} type="outline" color="primary" text="Войти" />
-  );
+  let rightSide = <Button onClick={toLogin} type="outline" color="primary" text="Войти" />;
+  if (isAuth) rightSide = <UserPanel />;
 
   return (
     <div className="header">
@@ -31,4 +28,4 @@ export const Header: FC = memo(() => {
       <div className="header__section">{rightSide}</div>
     </div>
   );
-});
+};

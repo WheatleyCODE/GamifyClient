@@ -9,9 +9,8 @@ import { Input } from '../UI/Input';
 import { Form } from './Form/Form';
 
 export const ResetPasswordForm: FC = () => {
-  const { resetPassword, setAuthMessage } = useActions();
+  const { resetPassword } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
-
   const emailInput = useValidInput([emailValidator]);
   const [isDisable, setIsDisable] = useState(false);
 
@@ -23,9 +22,7 @@ export const ResetPasswordForm: FC = () => {
   };
 
   useEffect(() => {
-    if (message) {
-      setIsDisable(false);
-    }
+    if (message) setIsDisable(false);
   }, [message]);
 
   return (
@@ -44,11 +41,7 @@ export const ResetPasswordForm: FC = () => {
 
         <hr className="reset-password-form__hr" />
 
-        <Button
-          disable={isDisable}
-          onClick={resetPasswordHanlder}
-          text="Cбросить пароль"
-        />
+        <Button disable={isDisable} onClick={resetPasswordHanlder} text="Cбросить пароль" />
       </div>
     </Form>
   );

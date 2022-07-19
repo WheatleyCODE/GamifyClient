@@ -11,10 +11,7 @@ const axiosIstance = axios.create({
 });
 
 axiosIstance.interceptors.request.use((config: any) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem(
-    StorageKeys.ACCESS_TOKEN,
-  )}`;
-
+  config.headers.Authorization = `Bearer ${localStorage.getItem(StorageKeys.ACCESS_TOKEN)}`;
   return config;
 });
 
@@ -25,23 +22,13 @@ axiosIstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (
-      error.response.status === 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
+    if (error.response.status === 401 && error.config && !error.config._isRetry) {
       originalRequest._isRetry = true;
 
       try {
-        const res = await axios.get<AuthResponse>(
-          `${BASE_URL}/api/auth/refresh`,
-          { withCredentials: true },
-        );
+        const res = await axios.get<AuthResponse>(`${BASE_URL}/api/auth/refresh`, { withCredentials: true });
         const authResponse = res.data;
-        localStorage.setItem(
-          StorageKeys.ACCESS_TOKEN,
-          authResponse.accessToken,
-        );
+        localStorage.setItem(StorageKeys.ACCESS_TOKEN, authResponse.accessToken);
 
         return await axiosIstance.request(originalRequest);
       } catch (e) {

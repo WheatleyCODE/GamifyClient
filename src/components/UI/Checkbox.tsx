@@ -13,22 +13,11 @@ export const Checkbox: FC<CheckboxProps> = memo(({ label, value, onClick }) => {
     <div className="checkbox">
       <label className="checkbox__label" htmlFor="checkbox">
         <div className={`checkbox__square ${value && 'active'}`}>
-          <CSSTransition
-            mountOnEnter
-            unmountOnExit
-            in={value}
-            timeout={150}
-            classNames="show"
-          >
+          <CSSTransition mountOnEnter unmountOnExit in={value} timeout={150} classNames="show">
             <FiCheck />
           </CSSTransition>
         </div>
-        <input
-          className="checkbox__textfild"
-          onClick={onClick}
-          id="checkbox"
-          type="checkbox"
-        />
+        <input className="checkbox__textfild" onClick={onClick} id="checkbox" type="checkbox" />
         <div className="checkbox__text">{label}</div>
       </label>
     </div>

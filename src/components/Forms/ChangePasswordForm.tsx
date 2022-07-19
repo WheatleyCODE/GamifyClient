@@ -13,9 +13,8 @@ import { Input } from '../UI/Input';
 import { Form } from './Form/Form';
 
 export const ChangePasswordForm: FC = () => {
-  const { changePassword, setAuthMessage } = useActions();
+  const { changePassword } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
-
   const params = useParams();
   const passwordInput = useValidInput([passValidator]);
   const repPasswordInput = useValidInput([passValidator]);
@@ -23,15 +22,11 @@ export const ChangePasswordForm: FC = () => {
   const [isDisable, setIsDisable] = useState(false);
 
   const isEqPass = isEqual(passwordInput.value, repPasswordInput.value);
-  const passError = getPassError(
-    isEqPass,
-    passwordInput.isTouched,
-    repPasswordInput.isTouched,
-  );
+  const passError = getPassError(isEqPass, passwordInput.isTouched, repPasswordInput.isTouched);
 
   const changePasswordHanlder = () => {
-    if (passwordInput.isError || passwordInput.isError) return;
-    if (!passwordInput.value || !passwordInput.value) return;
+    if (passwordInput.isError || repPasswordInput.isError) return;
+    if (!passwordInput.value || !repPasswordInput.value) return;
     if (passError || !params.link) return;
 
     setIsDisable(true);
@@ -41,9 +36,7 @@ export const ChangePasswordForm: FC = () => {
   const changeShowPass = useCallback(() => setShowPass((p) => !p), []);
 
   useEffect(() => {
-    if (message) {
-      setIsDisable(false);
-    }
+    if (message) setIsDisable(false);
   }, [message]);
 
   return (
@@ -73,21 +66,13 @@ export const ChangePasswordForm: FC = () => {
 
         <div className="change-password-form__container">
           <div className="change-password-form__checkbox">
-            <Checkbox
-              label="Показать пароль"
-              value={showPass}
-              onClick={changeShowPass}
-            />
+            <Checkbox label="Показать пароль" value={showPass} onClick={changeShowPass} />
           </div>
         </div>
 
         <hr className="change-password-form__hr" />
 
-        <Button
-          disable={isDisable}
-          onClick={changePasswordHanlder}
-          text="Изменить пароль"
-        />
+        <Button disable={isDisable} onClick={changePasswordHanlder} text="Изменить пароль" />
       </div>
     </Form>
   );

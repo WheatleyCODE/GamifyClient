@@ -8,13 +8,12 @@ export const UserPanel = () => {
   const { user } = useTypedSelector((state) => state.auth);
 
   const logoutHandler = useCallback(() => logout(), []);
+  const nickName = user.nickName.toUpperCase();
 
   return (
     <div className="user-panel">
       <div aria-hidden onClick={logoutHandler} className="user-panel__user">
-        <span className="user-panel__nick-name">
-          {user.nickName.toUpperCase()}
-        </span>
+        <span className="user-panel__nick-name">{nickName}</span>
         <FaUserAstronaut />
       </div>
     </div>

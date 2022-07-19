@@ -9,19 +9,17 @@ export const ActivatePage = () => {
   const { user } = useTypedSelector((state) => state.auth);
   const navigate = useNavigate();
 
+  const redirect = () => navigate(PathRoutes.LOGIN);
+
   const params = useParams();
 
   useEffect(() => {
-    if (params.link) {
-      loginByActivationLink(params.link);
-    }
+    if (params.link) loginByActivationLink(params.link, redirect);
   }, []);
 
   useEffect(() => {
-    if (user.isActivated) {
-      navigate(PathRoutes.DASHBOARD);
-    }
+    if (user.isActivated) navigate(PathRoutes.DASHBOARD);
   }, [user]);
 
-  return <h1>Активация аккаунта</h1>;
+  return <div />;
 };

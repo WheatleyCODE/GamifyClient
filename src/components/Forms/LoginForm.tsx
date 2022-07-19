@@ -14,10 +14,9 @@ import { Link } from '../UI/Link';
 import { Form } from './Form/Form';
 
 export const LoginForm: FC = () => {
-  const { login, setAuthMessage } = useActions();
+  const { login } = useActions();
   const navigate = useNavigate();
   const { message } = useTypedSelector((state) => state.auth);
-
   const emailInput = useValidInput([emailValidator]);
   const passwordInput = useValidInput([passValidator]);
   const [showPass, setShowPass] = useState(false);
@@ -35,9 +34,7 @@ export const LoginForm: FC = () => {
   };
 
   useEffect(() => {
-    if (message) {
-      setIsDisable(false);
-    }
+    if (message) setIsDisable(false);
   }, [message]);
 
   return (
@@ -67,11 +64,7 @@ export const LoginForm: FC = () => {
 
         <div className="login-form__container">
           <div className="login-form__checkbox">
-            <Checkbox
-              label="Показать пароль"
-              value={showPass}
-              onClick={changeShowPass}
-            />
+            <Checkbox label="Показать пароль" value={showPass} onClick={changeShowPass} />
           </div>
           <div className="login-form__forgot-password">
             <Link text="Забыли пароль?" href={PathRoutes.RESET_PASSWORD} />
@@ -83,10 +76,7 @@ export const LoginForm: FC = () => {
         <Button disable={isDisable} onClick={loginHandler} text="Войти" />
 
         <div className="login-form__link">
-          <Link
-            text="Нет аккаунта? Зарегистрироваться"
-            href={PathRoutes.REGISTER}
-          />
+          <Link text="Нет аккаунта? Зарегистрироваться" href={PathRoutes.REGISTER} />
         </div>
       </div>
     </Form>
