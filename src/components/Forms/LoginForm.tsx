@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { useNavigate } from 'react-router';
 import { emailValidator, passValidator } from '../../helpers/validators';
 import { useActions } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -14,6 +15,7 @@ import { Form } from './Form/Form';
 
 export const LoginForm: FC = () => {
   const { login, setAuthMessage } = useActions();
+  const navigate = useNavigate();
   const { message } = useTypedSelector((state) => state.auth);
 
   const emailInput = useValidInput([emailValidator]);
@@ -22,13 +24,14 @@ export const LoginForm: FC = () => {
   const [isDisable, setIsDisable] = useState(false);
 
   const changeShowPass = useCallback(() => setShowPass((p) => !p), []);
+  const redirect = () => navigate(PathRoutes.DASHBOARD);
 
   const loginHandler = () => {
     if (emailInput.isError || passwordInput.isError) return;
     if (!emailInput.value || !passwordInput.value) return;
 
     setIsDisable(true);
-    login(emailInput.value, passwordInput.value);
+    login(emailInput.value, passwordInput.value, redirect);
   };
 
   useEffect(() => {
@@ -36,12 +39,6 @@ export const LoginForm: FC = () => {
       setIsDisable(false);
     }
   }, [message]);
-
-  useEffect(() => {
-    if (message) {
-      setAuthMessage(null);
-    }
-  }, []);
 
   return (
     <Form title="Вход">

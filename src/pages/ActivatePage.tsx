@@ -19,7 +19,7 @@ export const ActivatePage = () => {
 
   useEffect(() => {
     if (user.isActivated) {
-      navigate(PathRoutes.HOME);
+      navigate(PathRoutes.DASHBOARD);
     }
   }, [user]);
 

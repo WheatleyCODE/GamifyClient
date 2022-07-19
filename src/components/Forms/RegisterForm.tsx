@@ -43,12 +43,6 @@ export const RegisterForm: FC = () => {
     }
   }, [message]);
 
-  useEffect(() => {
-    if (message) {
-      setAuthMessage(null);
-    }
-  }, []);
-
   const changeShowPass = useCallback(() => setShowPass((p) => !p), []);
 
   const registerHandler = () => {

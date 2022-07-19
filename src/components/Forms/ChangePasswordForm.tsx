@@ -46,12 +46,6 @@ export const ChangePasswordForm: FC = () => {
     }
   }, [message]);
 
-  useEffect(() => {
-    if (message) {
-      setAuthMessage(null);
-    }
-  }, []);
-
   return (
     <Form title="Изменить пароль">
       <div className="password-form">

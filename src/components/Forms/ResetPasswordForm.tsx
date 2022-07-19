@@ -28,12 +28,6 @@ export const ResetPasswordForm: FC = () => {
     }
   }, [message]);
 
-  useEffect(() => {
-    if (message) {
-      setAuthMessage(null);
-    }
-  }, []);
-
   return (
     <Form title="Сбросить пароль">
       <div className="reset-password-form">

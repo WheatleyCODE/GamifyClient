@@ -1,13 +1,7 @@
 import { Dispatch } from 'react';
 import axios, { AxiosError } from 'axios';
 import { AuthService } from '../../services/AuthService';
-import {
-  AuthAction,
-  AuthActionTypes,
-  AuthMessage,
-  AuthResponse,
-  ResponseError,
-} from '../../types/auth';
+import { AuthAction, AuthActionTypes, AuthMessage, AuthResponse, ResponseError } from '../../types/auth';
 import { BASE_URL } from '../../http';
 import { StorageKeys } from '../../types/localStorage';
 
@@ -35,7 +29,7 @@ function dispathAuthMessage(dispatch: Dispatch<AuthAction>, e: unknown) {
   });
 }
 
-export const login = (email: string, password: string) => {
+export const login = (email: string, password: string, redirect: () => void) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const res = await AuthService.login(email, password);
@@ -55,6 +49,9 @@ export const login = (email: string, password: string) => {
           text: 'Вы успешно вошли в аккаунт',
         },
       });
+
+      // * Что бы успело показаться сообщение об удачном входе
+      setTimeout(redirect, 1000);
     } catch (e: unknown) {
       dispathAuthMessage(dispatch, e);
     }
@@ -98,10 +95,7 @@ export const checkAuth = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       dispatch({ type: AuthActionTypes.SET_LOADING, payload: true });
-      const res = await axios.get<AuthResponse>(
-        `${BASE_URL}/api/auth/refresh`,
-        { withCredentials: true },
-      );
+      const res = await axios.get<AuthResponse>(`${BASE_URL}/api/auth/refresh`, { withCredentials: true });
 
       const { data } = res;
       localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
