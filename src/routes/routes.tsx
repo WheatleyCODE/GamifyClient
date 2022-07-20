@@ -1,11 +1,13 @@
+import { lazy } from 'react';
 import { ActivatePage } from '../pages/ActivatePage';
 import { ChangePasswordPage } from '../pages/ChangePasswordPage';
-import { DashboardPage } from '../pages/DashboardPage';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { ResetPasswordPage } from '../pages/ResetPasswordPage';
 import { PathRoutes } from '../types/routes';
+
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 
 export const routes = [
   {

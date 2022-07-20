@@ -1,0 +1,22 @@
+import React, { useEffect } from 'react';
+import { GiAncientSword } from 'react-icons/gi';
+import { useActions } from '../../hooks/useAction';
+import { StorageKeys } from '../../types/localStorage';
+
+export const AppLoader = () => {
+  const { checkAuth } = useActions();
+
+  useEffect(() => {
+    if (localStorage.getItem(StorageKeys.ACCESS_TOKEN)) {
+      checkAuth();
+    }
+  }, []);
+
+  return (
+    <div className="app-loader">
+      <div className="app-loader__logo">
+        <GiAncientSword className="icon" />
+      </div>
+    </div>
+  );
+};
