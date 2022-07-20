@@ -1,12 +1,12 @@
 import React from 'react';
 import { Layout } from '../components/Layout/Layout';
 
-const DashboardPage = () => {
+const SocialPage = () => {
   return (
     <Layout>
-      <div>DashboardPage</div>
+      <div>SocialPage</div>
     </Layout>
   );
 };
 
-export default DashboardPage;
+export default SocialPage;

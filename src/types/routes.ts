@@ -6,4 +6,6 @@ export enum PathRoutes {
   CHANGE_PASSWORD = '/change/password/:link',
   ACTIVATE = '/activate/:link',
   DASHBOARD = '/dashboard',
+  STORAGE = '/storage',
+  SOCIAL = '/social',
 }

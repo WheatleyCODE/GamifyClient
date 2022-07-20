@@ -22,10 +22,10 @@ export const headerMenuAuth = [
   },
   {
     text: 'Хранилище',
-    path: PathRoutes.REGISTER,
+    path: PathRoutes.STORAGE,
   },
   {
     text: 'Cоцсеть',
-    path: PathRoutes.LOGIN,
+    path: PathRoutes.SOCIAL,
   },
 ];

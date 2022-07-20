@@ -51,7 +51,7 @@ export const login = (email: string, password: string, redirect: () => void) => 
       });
 
       // * Что-бы успело показаться сообщение об удачном входе
-      setTimeout(redirect, 1000);
+      setTimeout(redirect, 800);
     } catch (e: unknown) {
       dispathAuthMessage(dispatch, e);
     }
