@@ -1,0 +1,34 @@
+.storage-aside-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  cursor: pointer;
+  transition: color $animationDuration;
+
+  &__icon {
+    margin-right: 10px;
+
+    svg {
+      font-size: 1.3rem;
+      transition: color $animationDuration;
+    }
+  }
+
+  &:hover {
+    color: $colorOrange;
+  }
+}
+
+.storage-aside-menu-item.active {
+  color: $colorOrange;
+
+  .icon {
+    path {
+      color: $colorOrange;
+    }
+
+    line {
+      color: $colorOrange;
+    }
+  }
+}

@@ -3,7 +3,7 @@
   height: $headerHeight;
   display: flex;
   justify-content: space-between;
-  @include Shadow;
+  // @include Shadow;
 
   &__section {
     display: flex;

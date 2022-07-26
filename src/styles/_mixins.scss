@@ -52,6 +52,11 @@
   border-radius: 3px;
   transition: $animationDuration;
 
+  path {
+    color: $colorWhite;
+    transition: $animationDuration;
+  }
+
   &:hover {
     background-color: $color;
     opacity: 0.8;
@@ -72,10 +77,19 @@
   border-radius: 3px;
   transition: $animationDuration;
 
+  path {
+    color: $color;
+    transition: $animationDuration;
+  }
+
   &:hover {
     background-color: $color;
     opacity: 0.8;
     color: $colorWhite;
+
+    path {
+      color: $colorWhite;
+    }
   }
 
   &:active {

@@ -1,12 +1,15 @@
 import React from 'react';
 import { Layout } from '../components/Layout/Layout';
+import { StorageLayout } from '../components/Storage/StorageLayout';
 
-const StoragePage = () => {
+const StorageDrive = () => {
   return (
     <Layout>
-      <div>StoragePage</div>
+      <div className="storage-page">
+        <StorageLayout />
+      </div>
     </Layout>
   );
 };
 
-export default StoragePage;
+export default StorageDrive;

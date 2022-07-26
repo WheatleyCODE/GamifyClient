@@ -32,8 +32,19 @@
 @import './components/Forms/ChangePasswordForm.scss';
 @import './components/Forms/ResetPasswordForm.scss';
 
+@import './components/Storage/Storage.scss';
+@import './components/Storage/StorageMain.scss';
+@import './components/Storage/StorageHeader/StorageHeader.scss';
+@import './components/Storage/StorageHeader/StorageLogo.scss';
+@import './components/Storage/StorageLast/StorageLast.scss';
+@import './components/Storage/StorageLast/StorageLastItem.scss';
+@import './components/Storage/StorageAside/StorageAside.scss';
+@import './components/Storage/StorageAside/StorageAsideMenu.scss';
+@import './components/Storage/StorageAside/StorageAsideMenuItem.scss';
+
 @import './pages/HomePage.scss';
 @import './pages/LoginPage.scss';
 @import './pages/PegisterPage.scss';
 @import './pages/ResetPasswordPage.scss';
 @import './pages/ChangePasswordPage.scss';
+@import './pages/StoragePage.scss';

@@ -1,9 +1,16 @@
 .button {
 
   &__button {
+    display: flex;
+    justify-content: center;
     padding: 10px 15px;
     color: $colorWhite;
     font-size: 1.1rem;
+  }
+
+  &__icon {
+    @include flex-center;
+    margin-right: 6px;
   }
 
   &__button.fill.orange {
@@ -29,5 +36,9 @@
     &:hover {
       opacity: 1 !important;
     }
+  }
+
+  &__button.rounded {
+    border-radius: 40px !important;
   }
 }
