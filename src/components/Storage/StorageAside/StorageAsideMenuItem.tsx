@@ -5,20 +5,20 @@ import { NavLink } from 'react-router-dom';
 export type StorageAsideMenuItemProps = {
   text: string;
   Icon: IconType;
-  active?: boolean;
+  path: string;
 };
 
-export const StorageAsideMenuItem: FC<StorageAsideMenuItemProps> = ({ text, Icon, active }) => {
+export const StorageAsideMenuItem: FC<StorageAsideMenuItemProps> = ({ text, Icon, path }) => {
   const MemoIcon = memo(Icon);
 
   return (
-    <div className={`storage-aside-menu-item ${active && 'active'}`}>
-      {/* <NavLink to="/storage"> */}
-      <div className="storage-aside-menu-item__icon">
-        <MemoIcon className="icon" />
-      </div>
-      {text}
-      {/* </NavLink> */}
+    <div className="storage-aside-menu-item">
+      <NavLink className="storage-aside-menu-item__link" to={path}>
+        <div className="storage-aside-menu-item__icon">
+          <MemoIcon className="icon" />
+        </div>
+        {text}
+      </NavLink>
     </div>
   );
 };

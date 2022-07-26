@@ -1,9 +1,16 @@
 .storage-aside-menu-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 5px;
-  cursor: pointer;
-  transition: color $animationDuration;
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 8px 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color $animationDuration;
+
+    &:hover {
+      color: $colorOrange;
+    }
+  }
 
   &__icon {
     margin-right: 10px;
@@ -13,13 +20,9 @@
       transition: color $animationDuration;
     }
   }
-
-  &:hover {
-    color: $colorOrange;
-  }
 }
 
-.storage-aside-menu-item.active {
+.storage-aside-menu-item__link.active {
   color: $colorOrange;
 
   .icon {

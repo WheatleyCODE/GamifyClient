@@ -7,5 +7,10 @@ export enum PathRoutes {
   ACTIVATE = '/activate/:link',
   DASHBOARD = '/dashboard',
   STORAGE = '/storage',
+  STORAGE_MY_DRIVE = '/storage/my-drive',
+  STORAGE_SHARED = '/storage/chared',
+  STORAGE_RECENT = '/storage/recent',
+  STORAGE_STARRED = '/storage/starred',
+  STORAGE_TRASH = '/storage/trash',
   SOCIAL = '/social',
 }

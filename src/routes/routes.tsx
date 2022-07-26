@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { ActivatePage } from '../pages/ActivatePage';
 import { ChangePasswordPage } from '../pages/ChangePasswordPage';
 import { HomePage } from '../pages/HomePage';
@@ -7,72 +6,35 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { ResetPasswordPage } from '../pages/ResetPasswordPage';
 import { PathRoutes } from '../types/routes';
 
-const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-const StoragePage = lazy(() => import('../pages/StoragePage'));
-const SocialPage = lazy(() => import('../pages/SocialPage'));
-
 export const routes = [
   {
     path: PathRoutes.HOME,
     Page: HomePage,
+    childrens: [],
   },
   {
     path: PathRoutes.LOGIN,
     Page: LoginPage,
+    childrens: [],
   },
   {
     path: PathRoutes.REGISTER,
     Page: RegisterPage,
+    childrens: [],
   },
   {
     path: PathRoutes.RESET_PASSWORD,
     Page: ResetPasswordPage,
+    childrens: [],
   },
   {
     path: PathRoutes.CHANGE_PASSWORD,
     Page: ChangePasswordPage,
+    childrens: [],
   },
   {
     path: PathRoutes.ACTIVATE,
     Page: ActivatePage,
-  },
-];
-
-export const routesAuth = [
-  {
-    path: PathRoutes.HOME,
-    Page: HomePage,
-  },
-  {
-    path: PathRoutes.LOGIN,
-    Page: LoginPage,
-  },
-  {
-    path: PathRoutes.REGISTER,
-    Page: RegisterPage,
-  },
-  {
-    path: PathRoutes.RESET_PASSWORD,
-    Page: ResetPasswordPage,
-  },
-  {
-    path: PathRoutes.CHANGE_PASSWORD,
-    Page: ChangePasswordPage,
-  },
-  {
-    path: PathRoutes.ACTIVATE,
-    Page: ActivatePage,
-  },
-  {
-    path: PathRoutes.DASHBOARD,
-    Page: DashboardPage,
-  },
-  {
-    path: PathRoutes.STORAGE,
-    Page: StoragePage,
-  },
-  {
-    path: PathRoutes.SOCIAL,
-    Page: SocialPage,
+    childrens: [],
   },
 ];
