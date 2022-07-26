@@ -34,6 +34,7 @@
 
 @import './components/Storage/StorageDrive.scss';
 @import './components/Storage/StorageShared.scss';
+@import './components/Storage/StorageSorter.scss';
 @import './components/Storage/StorageHeader/StorageHeader.scss';
 @import './components/Storage/StorageHeader/StorageSearch.scss';
 @import './components/Storage/StorageHeader/StorageLogo.scss';
@@ -42,6 +43,7 @@
 @import './components/Storage/StorageAside/StorageAside.scss';
 @import './components/Storage/StorageAside/StorageAsideMenu.scss';
 @import './components/Storage/StorageAside/StorageAsideMenuItem.scss';
+@import './components/Storage/StorageAside/StorageSize.scss';
 
 @import './pages/HomePage.scss';
 @import './pages/LoginPage.scss';

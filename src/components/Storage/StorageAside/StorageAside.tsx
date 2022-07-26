@@ -2,6 +2,7 @@ import React from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 import { Button } from '../../UI/Button';
 import { StorageAsideMenu } from './StorageAsideMenu';
+import { StorageSize } from './StorageSize';
 
 export const StorageAside = () => {
   return (
@@ -10,6 +11,7 @@ export const StorageAside = () => {
         <Button Icon={BsPlusLg} type="outline" radius="rounded" text="Создать" />
       </div>
       <StorageAsideMenu />
+      <StorageSize />
     </div>
   );
 };
