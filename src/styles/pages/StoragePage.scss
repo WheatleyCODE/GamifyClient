@@ -1,7 +1,7 @@
 .storage-page {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 250px 1fr;
   grid-auto-rows: minmax(50px, auto);
-  grid-gap: 10px;
+  grid-gap: 15px;
   padding: 0px $paddingEdge;
 }
