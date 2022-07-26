@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Layout } from './components/Layout/Layout';
 import { AppPreLoader } from './components/Loaders/AppPreLoader';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { HomePage } from './pages/HomePage';
@@ -19,10 +20,12 @@ const App = () => {
       <BrowserRouter>
         <Suspense>
           <Routes>
-            {appRoutes.map(({ path, Page }) => (
-              <Route key={path} path={path} element={<Page />} />
-            ))}
-            <Route path="*" element={<HomePage />} />
+            <Route path="/" element={<Layout />}>
+              {appRoutes.map(({ path, Page }) => (
+                <Route index={path === '/'} key={path} path={path} element={<Page />} />
+              ))}
+              <Route path="*" element={<HomePage />} />
+            </Route>
           </Routes>
         </Suspense>
       </BrowserRouter>

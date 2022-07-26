@@ -1,31 +1,28 @@
 import React from 'react';
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { RegisterForm } from '../components/Forms/RegisterForm';
-import { Layout } from '../components/Layout/Layout';
 import { Resources } from '../components/design/Resources';
 
 export const HomePage = () => {
   return (
-    <Layout>
-      <div className="home-page">
-        <div className="home-page__section">
-          <Resources />
+    <div className="home-page">
+      <div className="home-page__section">
+        <Resources />
 
-          <div className="home-page__image">
-            <img alt="home" src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" />
+        <div className="home-page__image">
+          <img alt="home" src="https://habitica.com/static/img/home-main@3x.23eeafe4.png" />
 
-            <div className="home-page__title">
-              <h1>GAMIFY PROJECT</h1>
-            </div>
+          <div className="home-page__title">
+            <h1>GAMIFY PROJECT</h1>
           </div>
-
-          <RegisterForm />
         </div>
 
-        <div className="home-page__arrow">
-          <BsChevronDoubleDown />
-        </div>
+        <RegisterForm />
       </div>
-    </Layout>
+
+      <div className="home-page__arrow">
+        <BsChevronDoubleDown />
+      </div>
+    </div>
   );
 };
