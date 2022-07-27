@@ -40,6 +40,14 @@
   height: 0px;
 }
 
+.show-context-menu-enter-active {
+  animation: show-context-menu $animationDuration forwards;
+}
+
+.show-context-menu-exit-active {
+  animation: show-context-menu $animationDuration reverse forwards;
+}
+
 @keyframes default-show {
   0% {
     opacity: 0;
@@ -82,5 +90,21 @@
 
   100% {
     opacity: 0.7;
+  }
+}
+
+@keyframes show-context-menu {
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  100% {
+    height: 250px;
+    opacity: 1;
   }
 }

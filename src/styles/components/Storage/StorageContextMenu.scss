@@ -1,0 +1,33 @@
+.storage-context-menu {
+  padding: 15px 0;
+  // height: 350px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 2px 0;
+    cursor: pointer;
+    padding-left: 30px;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: rgb(255, 237, 217);
+      color: $colorOrange;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+      path {
+        color: rgb(149, 149, 149);
+      }
+    }
+  }
+
+  &__hr {
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid $colorLightGrey;
+  }
+}

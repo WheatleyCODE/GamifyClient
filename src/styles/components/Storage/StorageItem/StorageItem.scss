@@ -1,0 +1,37 @@
+.storage-item {
+  display: grid;
+  align-items: center;
+  height: 45px;
+  border-bottom: 1px solid $colorLightGrey;
+  background-color: $colorWhite;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 120px 110px 110px;
+  font-size: 0.85rem;
+  transition: background $animationDuration;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8f0fe;
+
+    div {
+      color: $colorPrimary;
+    }
+  }
+
+  &__name {
+    transition: color $animationDuration;
+    padding-left: 18px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+
+    .icon {
+      margin-right: 18px;
+      font-size: 1.6rem;
+
+      path {
+        color: rgb(88, 88, 88);
+      }
+    }
+  }
+}

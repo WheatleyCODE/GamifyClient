@@ -1,8 +1,8 @@
 .storage-last-item {
   @include flex-center;
   cursor: pointer;
-  width: 200px;
-  height: 150px;
+  width: 100%;
+  height: 140px;
   transition: border $animationDuration;
   border: 1px solid $colorLightGrey;
   border-radius: 5px;

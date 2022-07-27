@@ -3,20 +3,20 @@
   position: sticky;
   grid-row: 2 / span 3;
   top: 105px;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 310px);
   border-radius: 5px;
 
   &__create {
+    padding-right: 20px;
+
     .button {
       &__button {
-        width: 180px;
+        width: 100%;
         align-items: center;
-        height: 45px;
-        padding: 0 30px;
       }
 
       &__icon {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-right: 10px;
       }
     }
