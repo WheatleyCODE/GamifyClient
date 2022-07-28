@@ -1,10 +1,11 @@
 .storage-aside {
-  padding-top: 10px;
   position: sticky;
+  margin-top: -25px;
   grid-row: 2 / span 3;
   top: 105px;
-  height: calc(100vh - 310px);
+  height: 440px;
   border-radius: 5px;
+  z-index: 150;
 
   &__create {
     padding-right: 20px;

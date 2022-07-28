@@ -9,7 +9,7 @@ export const StorageLogo: FC = memo(() => {
       <div className="storage-logo__icon">
         <MemoIcon />
       </div>
-      <span className="storage-logo__text">Хранилище</span>
+      <span className="storage-logo__text">STORAGE</span>
     </div>
   );
 });

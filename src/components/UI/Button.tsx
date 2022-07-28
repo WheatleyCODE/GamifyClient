@@ -3,7 +3,7 @@ import { IconType } from 'react-icons';
 
 export type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  text: string;
+  text?: string;
   type?: 'fill' | 'outline';
   color?: 'primary' | 'orange';
   radius?: 'rounded' | 'default';

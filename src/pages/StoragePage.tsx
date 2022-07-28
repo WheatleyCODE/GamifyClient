@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { CSSTransition } from 'react-transition-group';
 import { ContextMenu } from '../components/UI/ContextMenu';
 import { StorageAside } from '../components/Storage/StorageAside/StorageAside';
@@ -11,6 +11,8 @@ import { delay } from '../utils/delay';
 import { StorageContextMenu } from '../components/Storage/StorageContextMenu';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useAction';
+import { PathRoutes } from '../types/routes';
+import { clearParam } from '../utils/clearParam';
 
 export type Coords = {
   top?: string;
@@ -25,6 +27,9 @@ const StoragePage = () => {
   const ref = useRef<null | HTMLDivElement>(null);
   const { user } = useTypedSelector((state) => state.auth);
   const { fetchItems } = useActions();
+  const location = useLocation();
+
+  const showLast = !location.pathname.includes(clearParam(PathRoutes.STORAGE_FOLDER));
 
   useEffect(() => {
     fetchItems(user.storage);
@@ -82,7 +87,7 @@ const StoragePage = () => {
   return (
     <div onContextMenu={onContext} className="storage-page">
       <StorageHeader />
-      <StorageLast />
+      {showLast && <StorageLast />}
       <StorageAside />
       <StorageSorter />
       <Outlet />

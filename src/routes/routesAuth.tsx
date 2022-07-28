@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { StorageDrive } from '../components/Storage/StorageSections/StorageDrive';
+import { StorageFolder } from '../components/Storage/StorageSections/StorageFolder';
 import { StorageRecent } from '../components/Storage/StorageSections/StorageRecent';
 import { StorageShared } from '../components/Storage/StorageSections/StorageShared';
 import { StorageStarred } from '../components/Storage/StorageSections/StorageStarred';
@@ -75,6 +76,10 @@ export const routesAuth = [
       {
         path: PathRoutes.STORAGE_TRASH,
         Component: StorageTrash,
+      },
+      {
+        path: PathRoutes.STORAGE_FOLDER,
+        Component: StorageFolder,
       },
     ],
   },

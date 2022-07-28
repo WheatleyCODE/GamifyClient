@@ -1,0 +1,55 @@
+.storage-path {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid $colorLightGrey;
+
+  &__items {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    font-size: 1.3rem;
+    width: 30px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0px;
+    font-size: 0.9rem;
+    transition: color $animationDuration;
+    cursor: pointer;
+
+    &:hover {
+      color: $colorOrange;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+      width: 20px;
+      margin-right: 5px;
+      path {
+        color: rgb(64, 64, 64);
+      }
+      margin-top: -2px;
+    }
+  }
+
+  .button {
+    height: 34px;
+
+    &__button {
+      height: 34px;
+      border: none !important;
+      font-size: 0.9rem;
+      padding: 0 10px;
+    }
+
+    &__icon {
+      font-size: 1.3rem;
+    }
+  }
+}

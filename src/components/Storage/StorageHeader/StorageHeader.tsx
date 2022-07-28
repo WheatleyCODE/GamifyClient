@@ -1,7 +1,6 @@
 import React, { FC, memo } from 'react';
-import { AiOutlineTable } from 'react-icons/ai';
-import { Button } from '../../UI/Button';
 import { StorageLogo } from './StorageLogo';
+import { StoragePath } from './StoragePath';
 import { StorageSearch } from './StorageSearch';
 
 export const StorageHeader: FC = memo(() => {
@@ -12,7 +11,7 @@ export const StorageHeader: FC = memo(() => {
       </div>
       <div className="storage-header__main">
         <StorageSearch />
-        <Button Icon={AiOutlineTable} type="outline" text="Отображение" />
+        <StoragePath />
       </div>
     </div>
   );

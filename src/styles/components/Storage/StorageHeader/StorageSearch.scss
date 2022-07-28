@@ -1,12 +1,58 @@
 .storage-search {
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
 
-  .input {
-    width: 370px;
-    margin-bottom: 10px;
+  &__input {
+    position: relative;
+  }
 
-    &__textfild {
-      width: 100%;
+  &__textfild {
+    background-color: rgb(243, 243, 243);
+    margin: 0;
+    height: 40px;
+    width: 500px;
+    border: 1px solid $colorLightGrey;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 46px;
+    font-size: 0.9rem;
+
+    &::-webkit-input-placeholder {
+      color: rgb(144, 144, 144);
+    }
+
+    &:focus {
+      outline: 1px solid $colorPrimary;
+    }
+  }
+
+  &__icon {
+    height: 40px;
+    width: 20px;
+    @include flex-center;
+    position: absolute;
+    top: 0;
+    left: 16px;
+    font-size: 1.2rem;
+
+    path {
+      color: rgb(85, 85, 85);
+    }
+  }
+
+  .button {
+    height: 34px;
+
+    &__button {
+      height: 34px;
+      border: none !important;
+      font-size: 0.9rem;
+      padding: 0 10px;
+    }
+
+    &__icon {
+      font-size: 1.3rem;
     }
   }
 }

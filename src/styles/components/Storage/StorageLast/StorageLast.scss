@@ -1,6 +1,14 @@
 .storage-last {
-  display: flex;
-  height: 140px;
+  &__items {
+    display: flex;
+    height: 140px;
+  }
+
+  &__title {
+    margin: 0;
+    padding-bottom: 15px;
+    font-size: 0.9rem;
+  }
 
   .storage-last-item:last-child {
     margin-right: 0;

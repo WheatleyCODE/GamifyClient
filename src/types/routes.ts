@@ -12,5 +12,6 @@ export enum PathRoutes {
   STORAGE_RECENT = '/storage/recent',
   STORAGE_STARRED = '/storage/starred',
   STORAGE_TRASH = '/storage/trash',
+  STORAGE_FOLDER = '/storage/folders/:id',
   SOCIAL = '/social',
 }
