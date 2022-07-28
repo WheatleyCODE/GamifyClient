@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import { AuthResponse } from '../types/auth';
 import { StorageKeys } from '../types/localStorage';

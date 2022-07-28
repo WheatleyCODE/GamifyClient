@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { BsCaretDown } from 'react-icons/bs';
 
-export const StorageSorter = () => {
+export const StorageSorter: FC = memo(() => {
   return (
     <div className="storage-sorter">
       <div className="storage-sorter__name">
@@ -18,4 +18,4 @@ export const StorageSorter = () => {
       </div>
     </div>
   );
-};
+});

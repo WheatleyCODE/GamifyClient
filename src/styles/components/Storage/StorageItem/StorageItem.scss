@@ -11,10 +11,10 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #e8f0fe;
+    background-color: #edf4ff;
 
     div {
-      color: $colorPrimary;
+      color: #277aff;
     }
   }
 
@@ -33,5 +33,13 @@
         color: rgb(88, 88, 88);
       }
     }
+  }
+}
+
+.storage-item.active {
+  background-color: #e8f0fe;
+
+  div {
+    color: $colorPrimary;
   }
 }

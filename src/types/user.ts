@@ -13,6 +13,7 @@ export interface User {
   firstName: string | null;
   lastName: string | null;
   activationLink: string;
+  storage: string;
 }
 export interface UserState {
   users: User[];

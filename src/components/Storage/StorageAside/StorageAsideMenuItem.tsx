@@ -8,7 +8,7 @@ export type StorageAsideMenuItemProps = {
   path: string;
 };
 
-export const StorageAsideMenuItem: FC<StorageAsideMenuItemProps> = ({ text, Icon, path }) => {
+export const StorageAsideMenuItem: FC<StorageAsideMenuItemProps> = memo(({ text, Icon, path }) => {
   const MemoIcon = memo(Icon);
 
   return (
@@ -21,4 +21,4 @@ export const StorageAsideMenuItem: FC<StorageAsideMenuItemProps> = ({ text, Icon
       </NavLink>
     </div>
   );
-};
+});

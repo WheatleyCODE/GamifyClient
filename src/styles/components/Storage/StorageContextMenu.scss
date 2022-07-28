@@ -1,6 +1,5 @@
 .storage-context-menu {
   padding: 15px 0;
-  // height: 350px;
 
   &__item {
     display: flex;
@@ -10,6 +9,7 @@
     cursor: pointer;
     padding-left: 30px;
     font-size: 0.9rem;
+    transition: all $animationDuration;
 
     &:hover {
       background-color: rgb(255, 237, 217);

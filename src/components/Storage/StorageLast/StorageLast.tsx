@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import { StorageLastItem } from './StorageLastItem';
 
-export const StorageLast = () => {
+export const StorageLast: FC = memo(() => {
   const arr = Array(7).fill(null);
   const [items, setItems] = useState(arr);
-
   const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,4 +30,4 @@ export const StorageLast = () => {
       ))}
     </div>
   );
-};
+});

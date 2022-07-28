@@ -5,13 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint/eslint-plugin',
-    'react',
-    'react-hooks',
-    'jsx-a11y',
-    'import',
-  ],
+  plugins: ['@typescript-eslint/eslint-plugin', 'react', 'react-hooks', 'jsx-a11y', 'import'],
   extends: [
     'google',
     'plugin:import/recommended',
@@ -49,6 +43,7 @@ module.exports = {
     'react/prop-types': 'off',
     'default-param-last': 'off',
     '@typescript-eslint/default-param-last': 'off',
+    'no-underscore-dangle': 'off',
   },
   settings: {
     'jsx-a11y': {

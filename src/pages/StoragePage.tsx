@@ -1,14 +1,16 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router';
 import { CSSTransition } from 'react-transition-group';
 import { ContextMenu } from '../components/UI/ContextMenu';
 import { StorageAside } from '../components/Storage/StorageAside/StorageAside';
 import { StorageHeader } from '../components/Storage/StorageHeader/StorageHeader';
 import { StorageLast } from '../components/Storage/StorageLast/StorageLast';
-import { StorageSorter } from '../components/Storage/StorageSorter';
+import { StorageSorter } from '../components/Storage/StorageSections/StorageSorter';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { delay } from '../utils/delay';
 import { StorageContextMenu } from '../components/Storage/StorageContextMenu';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useAction';
 
 export type Coords = {
   top?: string;
@@ -21,6 +23,12 @@ const StoragePage = () => {
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState<Coords | null>(null);
   const ref = useRef<null | HTMLDivElement>(null);
+  const { user } = useTypedSelector((state) => state.auth);
+  const { fetchItems } = useActions();
+
+  useEffect(() => {
+    fetchItems(user.storage);
+  }, []);
 
   const onContext = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();

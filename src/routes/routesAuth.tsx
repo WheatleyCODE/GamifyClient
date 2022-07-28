@@ -1,9 +1,9 @@
 import { lazy } from 'react';
-import { StorageDrive } from '../components/Storage/StorageDrive';
-import { StorageRecent } from '../components/Storage/StorageRecent';
-import { StorageShared } from '../components/Storage/StorageShared';
-import { StorageStarred } from '../components/Storage/StorageStarred';
-import { StorageTrash } from '../components/Storage/StorageTrash';
+import { StorageDrive } from '../components/Storage/StorageSections/StorageDrive';
+import { StorageRecent } from '../components/Storage/StorageSections/StorageRecent';
+import { StorageShared } from '../components/Storage/StorageSections/StorageShared';
+import { StorageStarred } from '../components/Storage/StorageSections/StorageStarred';
+import { StorageTrash } from '../components/Storage/StorageSections/StorageTrash';
 import { ActivatePage } from '../pages/ActivatePage';
 import { ChangePasswordPage } from '../pages/ChangePasswordPage';
 import { HomePage } from '../pages/HomePage';

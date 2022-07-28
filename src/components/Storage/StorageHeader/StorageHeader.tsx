@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { AiOutlineTable } from 'react-icons/ai';
 import { Button } from '../../UI/Button';
 import { StorageLogo } from './StorageLogo';
 import { StorageSearch } from './StorageSearch';
 
-export const StorageHeader = () => {
+export const StorageHeader: FC = memo(() => {
   return (
     <div className="storage-header">
       <div className="storage-header__aside">
@@ -16,4 +16,4 @@ export const StorageHeader = () => {
       </div>
     </div>
   );
-};
+});

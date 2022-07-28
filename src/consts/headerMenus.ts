@@ -22,7 +22,7 @@ export const headerMenuAuth = [
   },
   {
     text: 'Хранилище',
-    path: PathRoutes.STORAGE,
+    path: PathRoutes.STORAGE_MY_DRIVE,
   },
   {
     text: 'Cоцсеть',

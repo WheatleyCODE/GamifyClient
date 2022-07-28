@@ -33,9 +33,10 @@
 @import './components/Forms/ChangePasswordForm.scss';
 @import './components/Forms/ResetPasswordForm.scss';
 
-@import './components/Storage/StorageDrive.scss';
-@import './components/Storage/StorageShared.scss';
-@import './components/Storage/StorageSorter.scss';
+@import './components/Storage/StorageSections/StorageDrive.scss';
+@import './components/Storage/StorageSections/StorageShared.scss';
+@import './components/Storage/StorageSections/StorageSorter.scss';
+
 @import './components/Storage/StorageContextMenu.scss';
 @import './components/Storage/StorageHeader/StorageHeader.scss';
 @import './components/Storage/StorageHeader/StorageSearch.scss';

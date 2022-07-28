@@ -1,4 +1,8 @@
 .storage-last {
   display: flex;
   height: 140px;
+
+  .storage-last-item:last-child {
+    margin-right: 0;
+  }
 }
