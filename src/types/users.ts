@@ -22,23 +22,24 @@ export interface UserState {
 }
 
 export enum UserActionTypes {
-  FETCH_USERS_START = 'FETCH_USERS_START',
-  FETCH_USERS_SUCCES = 'FETCH_USERS_SUCCES',
-  FETCH_USERS_ERROR = 'FETCH_USERS_ERROR',
+  SET_USER_LOADING = 'SET_USER_LOADING',
+  SET_USERS = 'SET_USERS',
+  SET_USER_ERROR = 'SET_USER_ERROR',
 }
 
-interface FetchUserAction {
-  type: UserActionTypes.FETCH_USERS_START;
+interface SetUserLoadingAction {
+  type: UserActionTypes.SET_USER_LOADING;
+  payload: boolean;
 }
 
-interface FetchUserSuccesAction {
-  type: UserActionTypes.FETCH_USERS_SUCCES;
+interface SetUsersAction {
+  type: UserActionTypes.SET_USERS;
   payload: User[];
 }
 
-interface FetchUserErrorAction {
-  type: UserActionTypes.FETCH_USERS_ERROR;
+interface SetUserErrorAction {
+  type: UserActionTypes.SET_USER_ERROR;
   payload: string;
 }
 
-export type UserAction = FetchUserAction | FetchUserSuccesAction | FetchUserErrorAction;
+export type UserAction = SetUserLoadingAction | SetUsersAction | SetUserErrorAction;
