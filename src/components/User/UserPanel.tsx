@@ -4,10 +4,10 @@ import { useActions } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const UserPanel = () => {
-  const { logout } = useActions();
+  const { logoutReq } = useActions();
   const { user } = useTypedSelector((state) => state.auth);
 
-  const logoutHandler = useCallback(() => logout(), []);
+  const logoutHandler = useCallback(() => logoutReq(), []);
   const nickName = user.nickName.toUpperCase();
 
   return (

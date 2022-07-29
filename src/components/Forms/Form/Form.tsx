@@ -11,13 +11,13 @@ export type FormProps = {
 };
 
 export const Form: FC<FormProps> = ({ title, children }) => {
-  const { setAuthMessage } = useActions();
+  const { setAuthMessageAC } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
   const isFirst = useFirstRender();
 
   useEffect(() => {
     if (isFirst && message) {
-      setAuthMessage(null);
+      setAuthMessageAC(null);
     }
   }, []);
 

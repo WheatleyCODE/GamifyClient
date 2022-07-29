@@ -13,7 +13,7 @@ import { Input } from '../UI/Input';
 import { Form } from './Form/Form';
 
 export const ChangePasswordForm: FC = () => {
-  const { changePassword } = useActions();
+  const { changePasswordReq } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
   const params = useParams();
   const passwordInput = useValidInput([passValidator]);
@@ -30,7 +30,7 @@ export const ChangePasswordForm: FC = () => {
     if (passError || !params.link) return;
 
     setIsDisable(true);
-    changePassword(passwordInput.value, params.link);
+    changePasswordReq(passwordInput.value, params.link);
   };
 
   const changeShowPass = useCallback(() => setShowPass((p) => !p), []);

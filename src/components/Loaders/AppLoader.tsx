@@ -4,11 +4,11 @@ import { useActions } from '../../hooks/useAction';
 import { StorageKeys } from '../../types/localStorage';
 
 export const AppLoader = () => {
-  const { checkAuth } = useActions();
+  const { checkAuthReq } = useActions();
 
   useEffect(() => {
     if (localStorage.getItem(StorageKeys.ACCESS_TOKEN)) {
-      checkAuth();
+      checkAuthReq();
     }
   }, []);
 

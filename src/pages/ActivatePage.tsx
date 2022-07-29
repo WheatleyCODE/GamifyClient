@@ -5,7 +5,7 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { PathRoutes } from '../types/routes';
 
 export const ActivatePage = () => {
-  const { loginByActivationLink } = useActions();
+  const { loginByActivationLinkReq } = useActions();
   const { user } = useTypedSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export const ActivatePage = () => {
   const params = useParams();
 
   useEffect(() => {
-    if (params.link) loginByActivationLink(params.link, redirect);
+    if (params.link) loginByActivationLinkReq(params.link, redirect);
   }, []);
 
   useEffect(() => {

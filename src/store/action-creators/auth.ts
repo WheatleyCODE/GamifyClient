@@ -5,161 +5,129 @@ import { AuthAction, AuthActionTypes, AuthMessage, AuthResponse, ResponseError }
 import { BASE_URL } from '../../http';
 import { StorageKeys } from '../../types/localStorage';
 
-function dispathAuthMessage(dispatch: Dispatch<AuthAction>, e: unknown) {
+export const setAuthMessageAC = (authMessage: AuthMessage | null): AuthAction => ({
+  type: AuthActionTypes.SET_AUTH_MESSAGE,
+  payload: authMessage,
+});
+
+export const setUserAC = (payload: AuthResponse): AuthAction => ({
+  type: AuthActionTypes.SET_USER,
+  payload,
+});
+
+export const removeUserAC = (): AuthAction => ({ type: AuthActionTypes.REMOVE_USER });
+
+export const setAuthLoadingAC = (payload: boolean): AuthAction => ({
+  type: AuthActionTypes.SET_AUTH_LOADING,
+  payload,
+});
+
+const dispatchAuthMessage = (dispatch: Dispatch<AuthAction>, e: unknown) => {
   const error = e as AxiosError<ResponseError>;
   const message = error?.response?.data?.message;
 
   if (message) {
-    dispatch({
-      type: AuthActionTypes.SET_AUTH_MESSAGE,
-      payload: {
-        color: 'red',
-        text: message,
-      },
-    });
+    dispatch(setAuthMessageAC({ color: 'red', text: message }));
     return;
   }
 
-  dispatch({
-    type: AuthActionTypes.SET_AUTH_MESSAGE,
-    payload: {
-      color: 'red',
-      text: 'Сервер не доступен',
-    },
-  });
-}
+  dispatch(setAuthMessageAC({ color: 'red', text: 'Сервер не доступен' }));
+};
 
-export const login = (email: string, password: string, redirect: () => void) => {
+export const loginReq = (email: string, password: string, redirect: () => void) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const res = await AuthService.login(email, password);
       const { data } = res;
-
       localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
 
-      dispatch({
-        type: AuthActionTypes.SET_USER,
-        payload: data,
-      });
-
-      dispatch({
-        type: AuthActionTypes.SET_AUTH_MESSAGE,
-        payload: {
-          color: 'green',
-          text: 'Вы успешно вошли в аккаунт',
-        },
-      });
+      dispatch(setUserAC(data));
+      dispatch(setAuthMessageAC({ color: 'green', text: 'Вы успешно вошли в аккаунт' }));
 
       // * Что-бы успело показаться сообщение об удачном входе
       setTimeout(redirect, 800);
     } catch (e: unknown) {
-      dispathAuthMessage(dispatch, e);
+      dispatchAuthMessage(dispatch, e);
     }
   };
 };
 
-export const registration = (nick: string, email: string, password: string) => {
+export const registrationReq = (nick: string, email: string, password: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       await AuthService.registration(nick, email, password);
-
-      dispatch({
-        type: AuthActionTypes.SET_AUTH_MESSAGE,
-        payload: {
+      dispatch(
+        setAuthMessageAC({
           color: 'yellow',
-          text: 'На вашу почту было выслано письмо с ссылкой для активации аккаунта',
-        },
-      });
+          text: `На вашу почту: ${email} - было выслано письмо с ссылкой для активации аккаунта`,
+        }),
+      );
     } catch (e) {
-      dispathAuthMessage(dispatch, e);
+      dispatchAuthMessage(dispatch, e);
     }
   };
 };
 
-export const logout = () => {
+export const logoutReq = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       await AuthService.logout();
-
       localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
-
-      dispatch({ type: AuthActionTypes.REMOVE_USER });
+      dispatch(removeUserAC());
     } catch (e) {
       console.log(e);
     }
   };
 };
 
-export const checkAuth = () => {
+export const checkAuthReq = () => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
-      dispatch({ type: AuthActionTypes.SET_LOADING, payload: true });
+      dispatch(setAuthLoadingAC(true));
       const res = await axios.get<AuthResponse>(`${BASE_URL}/api/auth/refresh`, { withCredentials: true });
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, res.data.accessToken);
 
-      const { data } = res;
-      localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
-
-      dispatch({ type: AuthActionTypes.SET_USER, payload: data });
-      dispatch({ type: AuthActionTypes.SET_LOADING, payload: false });
+      dispatch(setUserAC(res.data));
+      dispatch(setAuthLoadingAC(false));
     } catch (e) {
-      dispatch({ type: AuthActionTypes.SET_LOADING, payload: false });
+      dispatch(setAuthLoadingAC(false));
     }
   };
 };
 
-export const setAuthMessage = (message: AuthMessage | null): AuthAction => ({
-  type: AuthActionTypes.SET_AUTH_MESSAGE,
-  payload: message,
-});
-
-export const resetPassword = (email: string) => {
+export const resetPasswordReq = (email: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       await AuthService.resetPassword(email);
-
-      dispatch({
-        type: AuthActionTypes.SET_AUTH_MESSAGE,
-        payload: {
+      dispatch(
+        setAuthMessageAC({
           color: 'yellow',
-          text: 'На вашу почту было выслано письмо с ссылкой для сброса пароля',
-        },
-      });
+          text: `На вашу почту: ${email} - было выслано письмо с ссылкой для сброса пароля`,
+        }),
+      );
     } catch (e) {
-      dispathAuthMessage(dispatch, e);
+      dispatchAuthMessage(dispatch, e);
     }
   };
 };
 
-export const changePassword = (password: string, link: string) => {
+export const changePasswordReq = (password: string, link: string) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       await AuthService.changePassword(password, link);
-
-      dispatch({
-        type: AuthActionTypes.SET_AUTH_MESSAGE,
-        payload: {
-          color: 'green',
-          text: 'Пароль успешно изменен',
-        },
-      });
+      dispatch(setAuthMessageAC({ color: 'green', text: 'Пароль успешно изменен' }));
     } catch (e) {
-      dispathAuthMessage(dispatch, e);
+      dispatchAuthMessage(dispatch, e);
     }
   };
 };
 
-export const loginByActivationLink = (link: string, redirect: () => void) => {
+export const loginByActivationLinkReq = (link: string, redirect: () => void) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     try {
       const res = await AuthService.loginByActivationLink(link);
-      const { data } = res;
-
-      localStorage.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
-
-      dispatch({
-        type: AuthActionTypes.SET_USER,
-        payload: data,
-      });
+      localStorage.setItem(StorageKeys.ACCESS_TOKEN, res.data.accessToken);
+      dispatch(setUserAC(res.data));
     } catch (e) {
       redirect();
     }

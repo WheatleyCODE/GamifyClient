@@ -12,7 +12,7 @@ const initialState: AuthState = {
 
 export const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case AuthActionTypes.SET_LOADING: {
+    case AuthActionTypes.SET_AUTH_LOADING: {
       return { ...state, loading: action.payload };
     }
 

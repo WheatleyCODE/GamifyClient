@@ -9,8 +9,8 @@ export type FormMessageProps = {
 };
 
 export const FormMessage: FC<FormMessageProps> = memo(({ text, color }) => {
-  const { setAuthMessage } = useActions();
-  const close = useCallback(() => setAuthMessage(null), []);
+  const { setAuthMessageAC } = useActions();
+  const close = useCallback(() => setAuthMessageAC(null), []);
 
   return (
     <div className={`form-message ${color}`}>

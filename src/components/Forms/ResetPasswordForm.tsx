@@ -9,7 +9,7 @@ import { Input } from '../UI/Input';
 import { Form } from './Form/Form';
 
 export const ResetPasswordForm: FC = () => {
-  const { resetPassword } = useActions();
+  const { resetPasswordReq } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
   const emailInput = useValidInput([emailValidator]);
   const [isDisable, setIsDisable] = useState(false);
@@ -17,7 +17,7 @@ export const ResetPasswordForm: FC = () => {
   const resetPasswordHanlder = () => {
     if (!emailInput.isError && emailInput.value) {
       setIsDisable(true);
-      resetPassword(emailInput.value);
+      resetPasswordReq(emailInput.value);
     }
   };
 

@@ -16,7 +16,7 @@ import { Form } from './Form/Form';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const RegisterForm: FC = () => {
-  const { registration } = useActions();
+  const { registrationReq } = useActions();
   const { message } = useTypedSelector((state) => state.auth);
   const nickNameInput = useValidInput([nickValidator]);
   const emailInput = useValidInput([emailValidator]);
@@ -41,7 +41,7 @@ export const RegisterForm: FC = () => {
     if (!passwordInput.value) return;
 
     setIsDisable(true);
-    registration(nickNameInput.value, emailInput.value, passwordInput.value);
+    registrationReq(nickNameInput.value, emailInput.value, passwordInput.value);
   };
 
   return (

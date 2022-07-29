@@ -14,7 +14,7 @@ import { Link } from '../UI/Link';
 import { Form } from './Form/Form';
 
 export const LoginForm: FC = () => {
-  const { login } = useActions();
+  const { loginReq } = useActions();
   const navigate = useNavigate();
   const { message } = useTypedSelector((state) => state.auth);
   const emailInput = useValidInput([emailValidator]);
@@ -30,7 +30,7 @@ export const LoginForm: FC = () => {
     if (!emailInput.value || !passwordInput.value) return;
 
     setIsDisable(true);
-    login(emailInput.value, passwordInput.value, redirect);
+    loginReq(emailInput.value, passwordInput.value, redirect);
   };
 
   useEffect(() => {
