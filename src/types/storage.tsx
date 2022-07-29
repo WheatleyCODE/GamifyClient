@@ -8,6 +8,8 @@ export enum ItemTypes {
   VIDEO = 'video',
 }
 
+export type Childrens = (Folder | Album | Track)[];
+
 export interface StorageResponse {
   _id: string;
   user: string;
@@ -59,7 +61,7 @@ export interface StorageState {
 }
 
 export enum StorageActionTypes {
-  SET_LOADING = 'SET_LOADING',
+  SET_STORAGE_LOADING = 'SET_STORAGE_LOADING',
   SET_ITEMS = 'SET_ITEMS',
   SET_ERROR = 'SET_ERROR',
   SET_STORAGE = 'SET_STORAGE',
@@ -80,8 +82,8 @@ interface SetCurrentAction {
   payload: string;
 }
 
-interface SetLoadingAction {
-  type: StorageActionTypes.SET_LOADING;
+interface SetStoragetLoadingAction {
+  type: StorageActionTypes.SET_STORAGE_LOADING;
   payload: boolean;
 }
 
@@ -96,7 +98,7 @@ interface SetErrorAction {
 }
 
 export type StorageAction =
-  | SetLoadingAction
+  | SetStoragetLoadingAction
   | SetItemsAction
   | SetErrorAction
   | SetStorageAction

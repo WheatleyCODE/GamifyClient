@@ -26,3 +26,20 @@ export const setCurrentItem = (id: string): StorageAction => ({
   type: StorageActionTypes.SET_CURRENT,
   payload: id,
 });
+
+export const fetchChildrens = (parentId: string) => {
+  return async (dispatch: Dispatch<StorageAction>) => {
+    try {
+      dispatch({ type: StorageActionTypes.SET_STORAGE_LOADING, payload: true });
+      const res = await StorageService.fetchChildrens(parentId);
+
+      dispatch({
+        type: StorageActionTypes.SET_ITEMS,
+        payload: [...res.data],
+      });
+    } catch (e) {
+      dispatch({ type: StorageActionTypes.SET_STORAGE_LOADING, payload: false });
+      console.log(e);
+    }
+  };
+};

@@ -7,5 +7,4 @@ const composeEnhancers =
     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-// Todo Разобраться что за сообщение
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

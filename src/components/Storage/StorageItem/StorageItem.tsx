@@ -19,8 +19,10 @@ export const StorageItem: FC<StorageItemProps> = memo(({ type, name, id, active 
   const navigate = useNavigate();
 
   const setTarget = useCallback(() => {
-    setCurrentItem(id);
-  }, [id]);
+    if (!active) {
+      setCurrentItem(id);
+    }
+  }, [id, active]);
 
   const openFolder = useCallback(() => {
     if (type === ItemTypes.FOLDER) {

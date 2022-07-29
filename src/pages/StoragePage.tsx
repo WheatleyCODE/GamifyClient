@@ -32,8 +32,10 @@ const StoragePage = () => {
   const showLast = !location.pathname.includes(clearParam(PathRoutes.STORAGE_FOLDER));
 
   useEffect(() => {
-    fetchItems(user.storage);
-  }, []);
+    if (location.pathname === PathRoutes.STORAGE_MY_DRIVE) {
+      fetchItems(user.storage);
+    }
+  }, [location.pathname]);
 
   const onContext = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();

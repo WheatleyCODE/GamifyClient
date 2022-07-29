@@ -11,7 +11,7 @@ const initialState: StorageState = {
 
 export const storageReducer = (state = initialState, action: StorageAction): StorageState => {
   switch (action.type) {
-    case StorageActionTypes.SET_LOADING: {
+    case StorageActionTypes.SET_STORAGE_LOADING: {
       return { ...state, loading: action.payload };
     }
 
