@@ -15,12 +15,12 @@ export type StorageItemProps = {
 
 export const StorageItem: FC<StorageItemProps> = memo(({ type, name, id, active }) => {
   const MemoIcon = memo(storageIcons[type]);
-  const { setCurrentItem } = useActions();
+  const { setCurrentItemAC } = useActions();
   const navigate = useNavigate();
 
   const setTarget = useCallback(() => {
     if (!active) {
-      setCurrentItem(id);
+      setCurrentItemAC(id);
     }
   }, [id, active]);
 

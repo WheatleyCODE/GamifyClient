@@ -1,44 +1,57 @@
 import { Dispatch } from 'redux';
 import { StorageService } from '../../services/StorageService';
-import { StorageAction, StorageActionTypes } from '../../types/storage';
+import { Childrens, StorageAction, StorageActionTypes } from '../../types/storage';
 
-export const fetchItems = (storageId: string) => {
+export const setCurrentItemAC = (payload: string): StorageAction => ({
+  type: StorageActionTypes.SET_CURRENT,
+  payload,
+});
+
+export const setStorageAC = (usedSpace: number, diskSpace: number, items: Childrens): StorageAction => ({
+  type: StorageActionTypes.SET_STORAGE,
+  payload: {
+    usedSpace,
+    diskSpace,
+    items,
+  },
+});
+
+export const setStorageLoadingAC = (payload: boolean): StorageAction => ({
+  type: StorageActionTypes.SET_STORAGE_LOADING,
+  payload,
+});
+
+export const setStorageItemsAC = (payload: Childrens): StorageAction => ({
+  type: StorageActionTypes.SET_ITEMS,
+  payload,
+});
+
+export const fetchItemsReq = (storageId: string) => {
   return async (dispatch: Dispatch<StorageAction>) => {
     try {
+      dispatch(setStorageLoadingAC(true));
       const res = await StorageService.fetchItems(storageId);
       const { usedSpace, diskSpace, tracks, albums, folders } = res.data;
 
-      dispatch({
-        type: StorageActionTypes.SET_STORAGE,
-        payload: {
-          usedSpace,
-          diskSpace,
-          items: [...folders, ...albums, ...tracks],
-        },
-      });
+      dispatch(setStorageAC(usedSpace, diskSpace, [...folders, ...albums, ...tracks]));
+      dispatch(setStorageLoadingAC(false));
     } catch (e) {
+      dispatch(setStorageLoadingAC(false));
       console.log(e);
     }
   };
 };
 
-export const setCurrentItem = (id: string): StorageAction => ({
-  type: StorageActionTypes.SET_CURRENT,
-  payload: id,
-});
-
 export const fetchChildrens = (parentId: string) => {
   return async (dispatch: Dispatch<StorageAction>) => {
     try {
-      dispatch({ type: StorageActionTypes.SET_STORAGE_LOADING, payload: true });
+      dispatch(setStorageLoadingAC(true));
       const res = await StorageService.fetchChildrens(parentId);
 
-      dispatch({
-        type: StorageActionTypes.SET_ITEMS,
-        payload: [...res.data],
-      });
+      dispatch(setStorageItemsAC([...res.data]));
+      dispatch(setStorageLoadingAC(false));
     } catch (e) {
-      dispatch({ type: StorageActionTypes.SET_STORAGE_LOADING, payload: false });
+      dispatch(setStorageLoadingAC(false));
       console.log(e);
     }
   };

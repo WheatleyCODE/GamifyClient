@@ -12,25 +12,33 @@ const initialState: StorageState = {
 export const storageReducer = (state = initialState, action: StorageAction): StorageState => {
   switch (action.type) {
     case StorageActionTypes.SET_STORAGE_LOADING: {
-      return { ...state, loading: action.payload };
+      return {
+        ...state,
+        loading: action.payload,
+      };
     }
 
     case StorageActionTypes.SET_ITEMS: {
-      return { ...state, loading: false, items: [...action.payload] };
+      return {
+        ...state,
+        items: [...action.payload],
+      };
     }
 
     case StorageActionTypes.SET_CURRENT: {
       const newTarget = state.items.find((item) => item._id === action.payload);
       if (!newTarget) return { ...state };
 
-      return { ...state, target: { ...newTarget } };
+      return {
+        ...state,
+        target: { ...newTarget },
+      };
     }
 
     case StorageActionTypes.SET_STORAGE: {
       const { usedSpace, diskSpace, items } = action.payload;
       return {
         ...state,
-        loading: false,
         items: [...items],
         usedSpace,
         diskSpace,
@@ -38,9 +46,12 @@ export const storageReducer = (state = initialState, action: StorageAction): Sto
     }
 
     case StorageActionTypes.SET_ERROR:
-      return { ...state, loading: false, error: action.payload };
+      return {
+        ...state,
+        error: action.payload,
+      };
 
     default:
-      return state;
+      return { ...state };
   }
 };

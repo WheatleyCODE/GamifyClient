@@ -26,14 +26,14 @@ const StoragePage = () => {
   const [coords, setCoords] = useState<Coords | null>(null);
   const ref = useRef<null | HTMLDivElement>(null);
   const { user } = useTypedSelector((state) => state.auth);
-  const { fetchItems } = useActions();
+  const { fetchItemsReq } = useActions();
   const location = useLocation();
 
   const showLast = !location.pathname.includes(clearParam(PathRoutes.STORAGE_FOLDER));
 
   useEffect(() => {
     if (location.pathname === PathRoutes.STORAGE_MY_DRIVE) {
-      fetchItems(user.storage);
+      fetchItemsReq(user.storage);
     }
   }, [location.pathname]);
 
