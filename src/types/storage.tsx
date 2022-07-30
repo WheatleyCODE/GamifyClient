@@ -51,9 +51,19 @@ export interface Track {
   comments: any[];
 }
 
+export interface StorageFilter {
+  name: boolean;
+  owner: boolean;
+  date: boolean;
+  size: boolean;
+}
+
 export interface StorageState {
   items: (Track | Album | Folder)[];
   target: Track | Album | Folder | null;
+  showCreateFolder: boolean;
+  filter: StorageFilter;
+  parentsList: Folder[];
   diskSpace: number;
   usedSpace: number;
   loading: boolean;
@@ -66,6 +76,10 @@ export enum StorageActionTypes {
   SET_ERROR = 'SET_ERROR',
   SET_STORAGE = 'SET_STORAGE',
   SET_CURRENT = 'SET_CURRENT',
+  SET_SHOW_FOLDER = 'SET_SHOW_FOLDER',
+  CREATE_FOLDER = 'CREATE_FOLDER',
+  SET_PARENTS_LIST = 'SET_PARENTS_LIST',
+  SET_STORAGE_FILTERS = 'SET_STORAGE_FILTERS',
 }
 
 interface SetStorageAction {
@@ -75,6 +89,26 @@ interface SetStorageAction {
     diskSpace: number;
     items: (Track | Album | Folder)[];
   };
+}
+
+interface SetStorageFiltersAction {
+  type: StorageActionTypes.SET_STORAGE_FILTERS;
+  payload: StorageFilter;
+}
+
+interface SetParentsListAction {
+  type: StorageActionTypes.SET_PARENTS_LIST;
+  payload: Folder[];
+}
+
+interface CreateFolderAction {
+  type: StorageActionTypes.CREATE_FOLDER;
+  payload: Folder;
+}
+
+interface SetShowCreateFolderAction {
+  type: StorageActionTypes.SET_SHOW_FOLDER;
+  payload: boolean;
 }
 
 interface SetCurrentAction {
@@ -102,4 +136,8 @@ export type StorageAction =
   | SetItemsAction
   | SetErrorAction
   | SetStorageAction
-  | SetCurrentAction;
+  | SetCurrentAction
+  | SetShowCreateFolderAction
+  | CreateFolderAction
+  | SetParentsListAction
+  | SetStorageFiltersAction;

@@ -35,8 +35,10 @@
 
 @import './components/Storage/StorageSections/StorageDrive.scss';
 @import './components/Storage/StorageSections/StorageShared.scss';
-@import './components/Storage/StorageSections/StorageSorter.scss';
 @import './components/Storage/StorageSections/StorageFolder.scss';
+
+@import './components/Storage/StorageSections/StorageSorter/StorageSorter.scss';
+@import './components/Storage/StorageSections/StorageSorter/StorageSorterItems.scss';
 
 @import './components/Storage/StorageContextMenu.scss';
 @import './components/Storage/StorageHeader/StorageHeader.scss';
@@ -51,6 +53,10 @@
 @import './components/Storage/StorageAside/StorageSize.scss';
 
 @import './components/Storage/StorageItem/StorageItem.scss';
+
+@import './components/Modals/Backdrop.scss';
+@import './components/Modals/Confirm.scss';
+@import './components/Modals/CreateFolderModal.scss';
 
 @import './pages/HomePage.scss';
 @import './pages/LoginPage.scss';

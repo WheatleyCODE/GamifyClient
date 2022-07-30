@@ -2,6 +2,14 @@ import { StorageAction, StorageState, StorageActionTypes } from '../../types/sto
 
 const initialState: StorageState = {
   items: [],
+  showCreateFolder: false,
+  filter: {
+    name: false,
+    owner: false,
+    date: false,
+    size: false,
+  },
+  parentsList: [],
   target: null,
   diskSpace: 0,
   usedSpace: 0,
@@ -15,6 +23,37 @@ export const storageReducer = (state = initialState, action: StorageAction): Sto
       return {
         ...state,
         loading: action.payload,
+      };
+    }
+
+    case StorageActionTypes.SET_PARENTS_LIST: {
+      return {
+        ...state,
+        parentsList: [...action.payload],
+      };
+    }
+
+    case StorageActionTypes.SET_SHOW_FOLDER: {
+      return {
+        ...state,
+        showCreateFolder: action.payload,
+      };
+    }
+
+    case StorageActionTypes.SET_STORAGE_FILTERS: {
+      return {
+        ...state,
+        filter: action.payload,
+      };
+    }
+
+    case StorageActionTypes.CREATE_FOLDER: {
+      const newItems = [...state.items];
+      newItems.push(action.payload);
+
+      return {
+        ...state,
+        items: newItems,
       };
     }
 

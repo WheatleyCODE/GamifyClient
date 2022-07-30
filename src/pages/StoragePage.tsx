@@ -5,7 +5,7 @@ import { ContextMenu } from '../components/UI/ContextMenu';
 import { StorageAside } from '../components/Storage/StorageAside/StorageAside';
 import { StorageHeader } from '../components/Storage/StorageHeader/StorageHeader';
 import { StorageLast } from '../components/Storage/StorageLast/StorageLast';
-import { StorageSorter } from '../components/Storage/StorageSections/StorageSorter';
+import { StorageSorter } from '../components/Storage/StorageSections/StorageSorter/StorageSorter';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { delay } from '../utils/delay';
 import { StorageContextMenu } from '../components/Storage/StorageContextMenu';
@@ -13,6 +13,8 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useAction';
 import { PathRoutes } from '../types/routes';
 import { clearParam } from '../utils/clearParam';
+import { Portal } from '../components/Portal/Portal';
+import { CreateFolderModal } from '../components/Modals/СreateFolderModal';
 
 export type Coords = {
   top?: string;
@@ -26,6 +28,7 @@ const StoragePage = () => {
   const [coords, setCoords] = useState<Coords | null>(null);
   const ref = useRef<null | HTMLDivElement>(null);
   const { user } = useTypedSelector((state) => state.auth);
+  const { showCreateFolder } = useTypedSelector((state) => state.storage);
   const { fetchItemsReq } = useActions();
   const location = useLocation();
 
@@ -47,7 +50,7 @@ const StoragePage = () => {
 
     const pageHeight = document.documentElement.scrollHeight;
     const normWidth = window.innerWidth / 4;
-    const normHeight = window.innerHeight / 8;
+    const normHeight = window.innerHeight / 10;
     const { platform } = window.navigator;
     const newCoords = {} as { top?: number; right?: number; left?: number; bottom?: number };
     newCoords.top = e.clientY + window.pageYOffset;
@@ -64,7 +67,7 @@ const StoragePage = () => {
       newCoords.left = undefined;
     }
 
-    if (e.screenY > normHeight * 6) {
+    if (e.screenY > normHeight * 8) {
       newCoords.top = undefined;
       newCoords.bottom = window.innerHeight - e.clientY - window.pageYOffset;
     }
@@ -93,13 +96,20 @@ const StoragePage = () => {
       <StorageAside />
       <StorageSorter />
       <Outlet />
+
       <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
         <ContextMenu bottom={coords?.bottom} top={coords?.top} right={coords?.right} left={coords?.left}>
           <div ref={ref}>
-            <StorageContextMenu />
+            <StorageContextMenu onClose={() => setShow(false)} />
           </div>
         </ContextMenu>
       </CSSTransition>
+
+      <Portal>
+        <CSSTransition mountOnEnter unmountOnExit in={showCreateFolder} timeout={200} classNames="show">
+          <CreateFolderModal />
+        </CSSTransition>
+      </Portal>
     </div>
   );
 };

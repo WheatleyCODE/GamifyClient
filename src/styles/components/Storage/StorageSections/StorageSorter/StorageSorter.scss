@@ -1,0 +1,12 @@
+.storage-sorter {
+  display: grid;
+  position: sticky;
+  top: 114px;
+  border-bottom: 1px solid $colorLightGrey;
+  background-color: $colorWhite;
+  z-index: 100;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 120px 110px 110px;
+  padding-bottom: 13px;
+  padding-top: 4px;
+}

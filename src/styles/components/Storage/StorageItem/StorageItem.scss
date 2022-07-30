@@ -9,6 +9,7 @@
   font-size: 0.85rem;
   transition: background $animationDuration;
   cursor: pointer;
+  animation: default-show 0.1s forwards;
 
   &:hover {
     background-color: #edf4ff;
@@ -32,6 +33,12 @@
       path {
         color: rgb(88, 88, 88);
       }
+    }
+  }
+
+  &__size {
+    .line {
+      margin-left: 5px;
     }
   }
 }

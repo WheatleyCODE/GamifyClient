@@ -1,4 +1,5 @@
 import React, { FC, memo, useCallback } from 'react';
+import { AiOutlineLine } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 import { storageIcons } from '../../../consts/storageIcons';
 import { useActions } from '../../../hooks/useAction';
@@ -30,6 +31,8 @@ export const StorageItem: FC<StorageItemProps> = memo(({ type, name, id, active 
     }
   }, [type, id]);
 
+  const MemeIcon = memo(AiOutlineLine);
+
   return (
     <div
       aria-hidden
@@ -43,7 +46,9 @@ export const StorageItem: FC<StorageItemProps> = memo(({ type, name, id, active 
       </div>
       <div className="storage-item__owner">Я</div>
       <div className="storage-item__date">24.05.22</div>
-      <div className="storage-item__size">5МБ</div>
+      <div className="storage-item__size">
+        {type === ItemTypes.FOLDER || type === ItemTypes.ALBUM ? <MemeIcon className="line" /> : '5МБ'}
+      </div>
     </div>
   );
 });

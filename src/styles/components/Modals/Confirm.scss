@@ -1,0 +1,22 @@
+.confirm {
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+  background-color: $colorWhite;
+  z-index: 30;
+
+  &__buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      height: 45px;
+
+      &__button {
+        height: 45px;
+        width: 100px;
+      }
+    }
+  }
+}

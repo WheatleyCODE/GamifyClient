@@ -4,3 +4,7 @@
   letter-spacing: -0.25px;
   color: $colorBlack;
 }
+
+body.win, body.mac {
+  overflow: hidden;
+}

@@ -1,4 +1,6 @@
 .storage-last {
+  animation: default-show 0.1s forwards;
+
   &__items {
     display: flex;
     height: 140px;

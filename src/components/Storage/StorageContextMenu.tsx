@@ -8,11 +8,23 @@ import {
   GiCloudUpload,
   GiDesert,
 } from 'react-icons/gi';
+import { useActions } from '../../hooks/useAction';
 
-export const StorageContextMenu: FC = () => {
+export type StorageContextMenuProps = {
+  onClose: () => void;
+};
+
+export const StorageContextMenu: FC<StorageContextMenuProps> = ({ onClose }) => {
+  const { setShowCreateFolderAC } = useActions();
+
+  const showCreateFolderModal = () => {
+    onClose();
+    setShowCreateFolderAC(true);
+  };
+
   return (
     <div className="storage-context-menu">
-      <div className="storage-context-menu__item">
+      <div aria-hidden onClick={showCreateFolderModal} className="storage-context-menu__item">
         <GiOpenFolder className="icon" /> Создать папку
       </div>
       <div className="storage-context-menu__item">
