@@ -10,15 +10,15 @@
     align-items: center;
   }
 
-  .icon {
-    font-size: 1.3rem;
-    width: 30px;
-  }
-
   &__link {
     text-decoration: none;
     display: flex;
     align-items: center;
+  }
+
+  .icon {
+    font-size: 1.3rem;
+    width: 30px;
   }
 
   &__item {

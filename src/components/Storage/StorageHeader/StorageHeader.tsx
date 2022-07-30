@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { StorageLogo } from './StorageLogo';
-import { StoragePath } from './StoragePath';
+import { StoragePath } from './StoragePath/StoragePath';
 import { StorageSearch } from './StorageSearch';
 
 export const StorageHeader: FC = memo(() => {

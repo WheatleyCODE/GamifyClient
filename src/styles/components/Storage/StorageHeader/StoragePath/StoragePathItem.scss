@@ -1,0 +1,33 @@
+.storage-path-item {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    font-size: 1.3rem;
+    width: 30px;
+  }
+
+  &__folder {
+    display: flex;
+    align-items: center;
+    padding: 5px 0px;
+    font-size: 0.9rem;
+    transition: color $animationDuration;
+    cursor: pointer;
+
+    &:hover {
+      color: $colorOrange;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+      width: 20px;
+      margin-right: 5px;
+      path {
+        color: rgb(64, 64, 64);
+      }
+      margin-top: -2px;
+    }
+  }
+}

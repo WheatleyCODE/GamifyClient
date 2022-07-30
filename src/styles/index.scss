@@ -44,7 +44,10 @@
 @import './components/Storage/StorageHeader/StorageHeader.scss';
 @import './components/Storage/StorageHeader/StorageSearch.scss';
 @import './components/Storage/StorageHeader/StorageLogo.scss';
-@import './components/Storage/StorageHeader/StoragePath.scss';
+
+@import './components/Storage/StorageHeader/StoragePath/StoragePath.scss';
+@import './components/Storage/StorageHeader/StoragePath/StoragePathItem.scss';
+
 @import './components/Storage/StorageLast/StorageLast.scss';
 @import './components/Storage/StorageLast/StorageLastItem.scss';
 @import './components/Storage/StorageAside/StorageAside.scss';
