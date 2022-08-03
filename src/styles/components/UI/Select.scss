@@ -1,0 +1,95 @@
+.select {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &__textfild {
+    width: 100%;
+    @include Input($colorPrimary);
+    padding: 15px 6px;
+    height: 60px;
+    padding-left: 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  &__icon {
+    height: 100%;
+    position: absolute;
+    @include flex-center;
+    left: 15px;
+    font-size: 1.4rem;
+
+    path {
+      color: $colorDarkGrey;
+    }
+  }
+
+  &__arrow-icon {
+    @include flex-center;
+    position: absolute;
+    padding-right: 20px;
+    right: 0;
+    top: 0;
+    height: 100%;
+
+    svg {
+      font-size: 1.05rem;
+
+      path {
+        color: rgb(89, 89, 89);
+      }
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    color: $colorDarkGrey;
+    display: flex;
+    align-items: center;
+    background-color: $colorWhite;
+    padding: 1px 5px;
+  }
+
+  &__items {
+    border-radius: 4px;
+    width: 100%;
+    z-index: 200;
+    border: 1px solid $colorLightGrey;
+    background-color: $colorWhite;
+    position: absolute;
+    top: 59px;
+    left: 0;
+  }
+
+  &__item {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+    border-bottom: 1px solid $colorLightGrey;
+    transition: background $animationDuration;
+
+    &:hover {
+      background-color: rgb(236, 236, 236);
+    }
+  }
+}
+
+.select.icon:hover .select__textfild {
+  outline: 1px solid $colorLightPrimary;
+}
+
+.select.icon {
+  .select__textfild {
+    padding-left: 50px;
+  }
+
+  .select__placeholder {
+    left: 45px;
+  }
+}

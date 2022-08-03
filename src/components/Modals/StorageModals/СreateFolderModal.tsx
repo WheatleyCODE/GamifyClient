@@ -1,12 +1,12 @@
 import React, { FC, useCallback } from 'react';
-import { GiFullFolder } from 'react-icons/gi';
+import { GiOpenFolder } from 'react-icons/gi';
 import { useParams } from 'react-router';
-import { folderNameValidator } from '../../helpers/validators';
-import { useActions } from '../../hooks/useAction';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useValidInput } from '../../hooks/useValidInput';
-import { Input } from '../UI/Input';
-import { Confirm } from './Confirm';
+import { folderNameValidator } from '../../../helpers/validators';
+import { useActions } from '../../../hooks/useAction';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useValidInput } from '../../../hooks/useValidInput';
+import { Input } from '../../UI/Input';
+import { Confirm } from '../Confirm';
 
 export const CreateFolderModal: FC = () => {
   const { setShowCreateFolderAC, createFolderReq } = useActions();
@@ -34,7 +34,7 @@ export const CreateFolderModal: FC = () => {
       <div className="create-folder-modal">
         <h4 className="create-folder-modal__title">Cоздать папку</h4>
         <Input
-          Icon={GiFullFolder}
+          Icon={GiOpenFolder}
           value={input.value}
           placeholder="Имя папки"
           onChange={input.onChange}

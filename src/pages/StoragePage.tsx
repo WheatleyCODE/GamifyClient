@@ -14,11 +14,11 @@ import { useActions } from '../hooks/useAction';
 import { PathRoutes } from '../types/routes';
 import { clearParam } from '../utils/clearParam';
 import { Portal } from '../components/Portal/Portal';
-import { CreateFolderModal } from '../components/Modals/СreateFolderModal';
+import { CreateFolderModal } from '../components/Modals/StorageModals/СreateFolderModal';
 import { calcContextMenuCoords, Coords } from '../utils/calcContextMenuCoords';
-import { AccessModal } from '../components/Modals/AccessModal';
-import { LinkModal } from '../components/Modals/LinkModal';
-import { RenameModal } from '../components/Modals/RenameModal';
+import { AccessModal } from '../components/Modals/StorageModals/AccessModal';
+import { LinkModal } from '../components/Modals/StorageModals/LinkModal';
+import { RenameModal } from '../components/Modals/StorageModals/RenameModal';
 
 const StoragePage = () => {
   const [show, setShow] = useState(false);
@@ -70,39 +70,39 @@ const StoragePage = () => {
       <StorageSorter />
       <Outlet />
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
+      <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
+        <Portal>
           <ContextMenu bottom={coords?.bottom} top={coords?.top} right={coords?.right} left={coords?.left}>
             <div ref={ref}>
               <StorageContextMenu onClose={() => setShow(false)} />
             </div>
           </ContextMenu>
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={showCreateFolder} timeout={200} classNames="show">
+      <CSSTransition mountOnEnter unmountOnExit in={showCreateFolder} timeout={200} classNames="show">
+        <Portal>
           <CreateFolderModal />
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={showAccessModal} timeout={200} classNames="show">
+      <CSSTransition mountOnEnter unmountOnExit in={showAccessModal} timeout={200} classNames="show">
+        <Portal>
           <AccessModal />
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={showLinkModal} timeout={200} classNames="show">
+      <CSSTransition mountOnEnter unmountOnExit in={showLinkModal} timeout={200} classNames="show">
+        <Portal>
           <LinkModal />
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={showRenameModal} timeout={200} classNames="show">
+      <CSSTransition mountOnEnter unmountOnExit in={showRenameModal} timeout={200} classNames="show">
+        <Portal>
           <RenameModal />
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
     </div>
   );
 };

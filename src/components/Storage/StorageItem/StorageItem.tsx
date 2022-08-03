@@ -2,6 +2,7 @@ import React, { FC, memo, useCallback, useRef, useState } from 'react';
 import { AiOutlineLine } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 import { CSSTransition } from 'react-transition-group';
+import { accessTypeNames } from '../../../consts/accessTypeNames';
 import { storageIcons } from '../../../consts/storageIcons';
 import { useActions } from '../../../hooks/useAction';
 import { useClickOutside } from '../../../hooks/useClickOutside';
@@ -9,7 +10,6 @@ import { PathRoutes } from '../../../types/routes';
 import { AccessType, ItemTypes } from '../../../types/storage';
 import { calcContextMenuCoords, Coords } from '../../../utils/calcContextMenuCoords';
 import { clearParam } from '../../../utils/clearParam';
-import { delay } from '../../../utils/delay';
 import { Portal } from '../../Portal/Portal';
 import { ContextMenu } from '../../UI/ContextMenu';
 import { FolderContextMenu } from '../ContextMenus/FolderContextMenu';
@@ -50,12 +50,6 @@ export const StorageItem: FC<StorageItemProps> = memo((props) => {
   const onContext = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!active) setCurrentItemAC(id);
-
-    // if (show) {
-    //   setShow(false);
-    //   await delay(200);
-    // }
-
     const newSetCoords = calcContextMenuCoords(e);
     setCoords(newSetCoords);
     setShow(true);
@@ -93,21 +87,21 @@ export const StorageItem: FC<StorageItemProps> = memo((props) => {
         <MemoIcon className="icon" />
         {name}
       </div>
-      <div className="storage-item__owner">{accessType}</div>
+      <div className="storage-item__owner">{accessTypeNames[accessType]}</div>
       <div className="storage-item__date">{new Date(creationDate).toLocaleDateString()}</div>
       <div className="storage-item__size">
         {type === ItemTypes.FOLDER || type === ItemTypes.ALBUM ? <MemeIcon className="line" /> : '5МБ'}
       </div>
 
-      <Portal>
-        <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
+      <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
+        <Portal>
           <ContextMenu bottom={coords?.bottom} top={coords?.top} right={coords?.right} left={coords?.left}>
             <div ref={ref}>
               <FolderContextMenu onClose={closeContextMenu} link={link} />
             </div>
           </ContextMenu>
-        </CSSTransition>
-      </Portal>
+        </Portal>
+      </CSSTransition>
     </div>
   );
 });

@@ -1,0 +1,19 @@
+.access-modal, .create-folder-modal, .rename-modal, .link-modal {
+  width: 400px;
+
+  &__title {
+    margin: 0;
+    padding-bottom: 25px;
+    font-size: 1.4rem;
+  }
+}
+
+.create-folder-modal, .rename-modal {
+  .input {
+    width: 100%;
+
+    &__textfild {
+      width: 100%;
+    }
+  }
+}

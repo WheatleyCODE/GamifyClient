@@ -17,6 +17,7 @@
 @import './components/UI/Link.scss';
 @import './components/UI/Checkbox.scss';
 @import './components/UI/ContextMenu.scss';
+@import './components/UI/Select.scss';
 
 @import './components/Layout/Layout.scss';
 @import './components/Header/Header.scss';
@@ -61,7 +62,10 @@
 
 @import './components/Modals/Backdrop.scss';
 @import './components/Modals/Confirm.scss';
-@import './components/Modals/CreateFolderModal.scss';
+
+@import './components/Modals/StorageModals/index.scss';
+@import './components/Modals/StorageModals/AccessModal.scss';
+@import './components/Modals/StorageModals/CreateFolderModal.scss';
 
 @import './pages/HomePage.scss';
 @import './pages/LoginPage.scss';

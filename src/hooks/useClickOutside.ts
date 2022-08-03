@@ -8,7 +8,7 @@ export const useClickOutside = <T extends HTMLElement = HTMLElement>(
   eventType: 'click' | 'contextmenu' = 'click',
 ) => {
   useEffect(() => {
-    document.body.addEventListener(eventType, (event) => {
+    const fn = (event: MouseEvent) => {
       const el = ref?.current;
 
       if (!el || el.contains(event.target as Node)) {
@@ -16,6 +16,12 @@ export const useClickOutside = <T extends HTMLElement = HTMLElement>(
       }
 
       handler(event);
-    });
+    };
+
+    document.body.addEventListener(eventType, fn);
+
+    return () => {
+      document.body.removeEventListener(eventType, fn);
+    };
   }, [handler, ref]);
 };
