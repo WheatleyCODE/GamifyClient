@@ -40,7 +40,9 @@
 @import './components/Storage/StorageSections/StorageSorter/StorageSorter.scss';
 @import './components/Storage/StorageSections/StorageSorter/StorageSorterItems.scss';
 
-@import './components/Storage/StorageContextMenu.scss';
+@import './components/Storage/ContextMenus/StorageContextMenu.scss';
+@import './components/Storage/ContextMenus/FolderContextMenu.scss';
+
 @import './components/Storage/StorageHeader/StorageHeader.scss';
 @import './components/Storage/StorageHeader/StorageSearch.scss';
 @import './components/Storage/StorageHeader/StorageLogo.scss';

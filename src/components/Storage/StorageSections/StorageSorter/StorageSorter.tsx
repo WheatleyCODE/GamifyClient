@@ -7,31 +7,40 @@ export const StorageSorter: FC = () => {
   const { filter } = useTypedSelector((state) => state.storage);
   const { setStorageFiltersAC } = useActions();
 
-  const defaultFilters = {
-    name: false,
-    owner: false,
-    date: false,
-    size: false,
-  };
-
   const changeFilterName = useCallback(() => {
-    defaultFilters.name = !filter.name;
-    setStorageFiltersAC(defaultFilters);
+    setStorageFiltersAC({
+      name: !filter.name,
+      owner: false,
+      date: false,
+      size: false,
+    });
   }, [filter.name]);
 
   const changeFilterOwner = useCallback(() => {
-    defaultFilters.owner = !filter.owner;
-    setStorageFiltersAC(defaultFilters);
+    setStorageFiltersAC({
+      name: false,
+      owner: !filter.owner,
+      date: false,
+      size: false,
+    });
   }, [filter.owner]);
 
   const changeFilterDate = useCallback(() => {
-    defaultFilters.date = !filter.date;
-    setStorageFiltersAC(defaultFilters);
+    setStorageFiltersAC({
+      name: false,
+      owner: false,
+      date: !filter.date,
+      size: false,
+    });
   }, [filter.date]);
 
   const changeFilterSize = useCallback(() => {
-    defaultFilters.size = !filter.size;
-    setStorageFiltersAC(defaultFilters);
+    setStorageFiltersAC({
+      name: false,
+      owner: false,
+      date: false,
+      size: !filter.size,
+    });
   }, [filter.size]);
 
   return (
@@ -39,7 +48,7 @@ export const StorageSorter: FC = () => {
       <StorageSorterItem toggle={filter.name} text="Название" onClick={changeFilterName} />
       <StorageSorterItem toggle={filter.owner} text="Доступ" onClick={changeFilterOwner} />
       <StorageSorterItem toggle={filter.date} text="Дата" onClick={changeFilterDate} />
-      <StorageSorterItem toggle={filter.name} text="Размер" onClick={changeFilterSize} />
+      <StorageSorterItem toggle={filter.size} text="Размер" onClick={changeFilterSize} />
     </div>
   );
 };

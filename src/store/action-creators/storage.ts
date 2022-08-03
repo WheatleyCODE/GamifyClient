@@ -31,6 +31,21 @@ export const setShowCreateFolderAC = (payload: boolean): StorageAction => ({
   payload,
 });
 
+export const setShowAccessModalAC = (payload: boolean): StorageAction => ({
+  type: StorageActionTypes.SET_SHOW_ACCESS_MODAL,
+  payload,
+});
+
+export const setShowLinkModalAC = (payload: boolean): StorageAction => ({
+  type: StorageActionTypes.SET_SHOW_LINK_MODAL,
+  payload,
+});
+
+export const setShowRenameModalAC = (payload: boolean): StorageAction => ({
+  type: StorageActionTypes.SET_SHOW_RENAME_MODAL,
+  payload,
+});
+
 export const createFolderAC = (payload: Folder): StorageAction => ({
   type: StorageActionTypes.CREATE_FOLDER,
   payload,

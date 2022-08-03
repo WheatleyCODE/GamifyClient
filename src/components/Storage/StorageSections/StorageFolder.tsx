@@ -19,9 +19,11 @@ export const StorageFolder = () => {
   if (loading) return <div className="storage-folder" />;
 
   return (
-    <div className="storage-folder">
+    <div data-context="true" className="storage-folder">
       {items.map((item) => (
         <StorageItem
+          accessType={item.accesType}
+          creationDate={item.creationDate}
           key={item._id}
           active={target?._id === item._id}
           id={item._id}

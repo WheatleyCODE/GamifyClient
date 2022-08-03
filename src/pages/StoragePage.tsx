@@ -8,27 +8,26 @@ import { StorageLast } from '../components/Storage/StorageLast/StorageLast';
 import { StorageSorter } from '../components/Storage/StorageSections/StorageSorter/StorageSorter';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { delay } from '../utils/delay';
-import { StorageContextMenu } from '../components/Storage/StorageContextMenu';
+import { StorageContextMenu } from '../components/Storage/ContextMenus/StorageContextMenu';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useAction';
 import { PathRoutes } from '../types/routes';
 import { clearParam } from '../utils/clearParam';
 import { Portal } from '../components/Portal/Portal';
 import { CreateFolderModal } from '../components/Modals/СreateFolderModal';
-
-export type Coords = {
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
-};
+import { calcContextMenuCoords, Coords } from '../utils/calcContextMenuCoords';
+import { AccessModal } from '../components/Modals/AccessModal';
+import { LinkModal } from '../components/Modals/LinkModal';
+import { RenameModal } from '../components/Modals/RenameModal';
 
 const StoragePage = () => {
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState<Coords | null>(null);
   const ref = useRef<null | HTMLDivElement>(null);
   const { user } = useTypedSelector((state) => state.auth);
-  const { showCreateFolder } = useTypedSelector((state) => state.storage);
+  const { showCreateFolder, showAccessModal, showLinkModal, showRenameModal } = useTypedSelector(
+    (state) => state.storage,
+  );
   const { fetchItemsReq } = useActions();
   const location = useLocation();
 
@@ -40,44 +39,12 @@ const StoragePage = () => {
     }
   }, [location.pathname]);
 
-  const onContext = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const onContext = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
+    if (!(e.target instanceof HTMLDivElement)) return;
+    if (!e.target.dataset.context) return;
 
-    if (show) {
-      setShow(false);
-      await delay(200);
-    }
-
-    const pageHeight = document.documentElement.scrollHeight;
-    const normWidth = window.innerWidth / 4;
-    const normHeight = window.innerHeight / 10;
-    const { platform } = window.navigator;
-    const newCoords = {} as { top?: number; right?: number; left?: number; bottom?: number };
-    newCoords.top = e.clientY + window.pageYOffset;
-    newCoords.left = e.clientX;
-
-    if (e.screenX > normWidth * 3) {
-      newCoords.right = 0;
-
-      if (pageHeight > window.innerHeight && platform === 'Win32') {
-        newCoords.right = -20;
-      }
-
-      newCoords.right += window.innerWidth - e.clientX;
-      newCoords.left = undefined;
-    }
-
-    if (e.screenY > normHeight * 8) {
-      newCoords.top = undefined;
-      newCoords.bottom = window.innerHeight - e.clientY - window.pageYOffset;
-    }
-
-    const newSetCoords = {
-      top: newCoords.top ? `${newCoords.top}px` : undefined,
-      left: newCoords.left ? `${newCoords.left}px` : undefined,
-      right: newCoords.right ? `${newCoords.right}px` : undefined,
-      bottom: newCoords.bottom ? `${newCoords.bottom}px` : undefined,
-    };
+    const newSetCoords = calcContextMenuCoords(e);
 
     setCoords(newSetCoords);
     setShow(true);
@@ -87,7 +54,13 @@ const StoragePage = () => {
     setShow(false);
   }, []);
 
+  const closeContextMenuOne = useCallback((e: Event) => {
+    if (!(e.target instanceof HTMLElement)) return;
+    if (!e.target.dataset.context) setShow(false);
+  }, []);
+
   useClickOutside(ref, closeContextMenu);
+  useClickOutside(ref, closeContextMenuOne, 'contextmenu');
 
   return (
     <div onContextMenu={onContext} className="storage-page">
@@ -97,17 +70,37 @@ const StoragePage = () => {
       <StorageSorter />
       <Outlet />
 
-      <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
-        <ContextMenu bottom={coords?.bottom} top={coords?.top} right={coords?.right} left={coords?.left}>
-          <div ref={ref}>
-            <StorageContextMenu onClose={() => setShow(false)} />
-          </div>
-        </ContextMenu>
-      </CSSTransition>
+      <Portal>
+        <CSSTransition mountOnEnter unmountOnExit in={show} timeout={200} classNames="show-context-menu">
+          <ContextMenu bottom={coords?.bottom} top={coords?.top} right={coords?.right} left={coords?.left}>
+            <div ref={ref}>
+              <StorageContextMenu onClose={() => setShow(false)} />
+            </div>
+          </ContextMenu>
+        </CSSTransition>
+      </Portal>
 
       <Portal>
         <CSSTransition mountOnEnter unmountOnExit in={showCreateFolder} timeout={200} classNames="show">
           <CreateFolderModal />
+        </CSSTransition>
+      </Portal>
+
+      <Portal>
+        <CSSTransition mountOnEnter unmountOnExit in={showAccessModal} timeout={200} classNames="show">
+          <AccessModal />
+        </CSSTransition>
+      </Portal>
+
+      <Portal>
+        <CSSTransition mountOnEnter unmountOnExit in={showLinkModal} timeout={200} classNames="show">
+          <LinkModal />
+        </CSSTransition>
+      </Portal>
+
+      <Portal>
+        <CSSTransition mountOnEnter unmountOnExit in={showRenameModal} timeout={200} classNames="show">
+          <RenameModal />
         </CSSTransition>
       </Portal>
     </div>

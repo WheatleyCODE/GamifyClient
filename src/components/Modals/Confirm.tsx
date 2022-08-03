@@ -5,10 +5,12 @@ import { Backdrop } from './Backdrop';
 export type ConfirmProps = {
   children: React.ReactNode;
   onClose: () => void;
+  closeText: string;
   onUpProve: () => void;
+  upProveText: string;
 };
 
-export const Confirm: FC<ConfirmProps> = ({ children, onClose, onUpProve }) => {
+export const Confirm: FC<ConfirmProps> = ({ children, onClose, onUpProve, closeText, upProveText }) => {
   useEffect(() => {
     const { platform } = window.navigator;
     if (platform === 'Win32') {
@@ -30,8 +32,8 @@ export const Confirm: FC<ConfirmProps> = ({ children, onClose, onUpProve }) => {
       <div aria-hidden onClick={stopPropagation} className="confirm">
         {children}
         <div className="confirm__buttons">
-          <Button onClick={onClose} color="orange" type="fill" text="Отмена" />
-          <Button onClick={onUpProve} type="fill" text="Создать" />
+          <Button onClick={onClose} color="orange" type="fill" text={closeText} />
+          <Button onClick={onUpProve} type="fill" text={upProveText} />
         </div>
       </div>
     </Backdrop>

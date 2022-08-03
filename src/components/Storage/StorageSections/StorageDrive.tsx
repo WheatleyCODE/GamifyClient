@@ -14,9 +14,11 @@ export const StorageDrive = () => {
   if (loading) return <div className="storage-drive" />;
 
   return (
-    <div className="storage-drive">
+    <div data-context="true" className="storage-drive">
       {items.map((item) => (
         <StorageItem
+          accessType={item.accesType}
+          creationDate={item.creationDate}
           active={target?._id === item._id}
           id={item._id}
           key={item._id}

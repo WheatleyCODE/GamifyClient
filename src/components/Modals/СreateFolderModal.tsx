@@ -30,7 +30,7 @@ export const CreateFolderModal: FC = () => {
   }, [input.value, params.id, user.storage]);
 
   return (
-    <Confirm onClose={closeModal} onUpProve={createFolder}>
+    <Confirm closeText="Отмена" upProveText="Создать" onClose={closeModal} onUpProve={createFolder}>
       <div className="create-folder-modal">
         <h4 className="create-folder-modal__title">Cоздать папку</h4>
         <Input

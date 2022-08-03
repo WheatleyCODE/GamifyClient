@@ -8,6 +8,12 @@ export enum ItemTypes {
   VIDEO = 'video',
 }
 
+export enum AccessType {
+  PRIVATE = 'PRIVATE',
+  PUBLICK = 'PUBLICK',
+  ACCESS_LINK = 'ACCESS_LINK',
+}
+
 export type Childrens = (Folder | Album | Track)[];
 
 export interface StorageResponse {
@@ -29,6 +35,10 @@ export interface Album {
   image: string;
   tracks: Track[];
   comments: any[];
+  accesLink?: string;
+  accesType: AccessType;
+  creationDate: number;
+  openDate: number;
 }
 
 export interface Folder {
@@ -36,6 +46,10 @@ export interface Folder {
   type: ItemTypes;
   user: string;
   name: string;
+  accesLink?: string;
+  accesType: AccessType;
+  creationDate: number;
+  openDate: number;
 }
 
 export interface Track {
@@ -49,6 +63,10 @@ export interface Track {
   image: string;
   audio: string;
   comments: any[];
+  accesLink?: string;
+  accesType: AccessType;
+  creationDate: number;
+  openDate: number;
 }
 
 export interface StorageFilter {
@@ -62,6 +80,9 @@ export interface StorageState {
   items: (Track | Album | Folder)[];
   target: Track | Album | Folder | null;
   showCreateFolder: boolean;
+  showAccessModal: boolean;
+  showLinkModal: boolean;
+  showRenameModal: boolean;
   filter: StorageFilter;
   parentsList: Folder[];
   diskSpace: number;
@@ -77,6 +98,9 @@ export enum StorageActionTypes {
   SET_STORAGE = 'SET_STORAGE',
   SET_CURRENT = 'SET_CURRENT',
   SET_SHOW_FOLDER = 'SET_SHOW_FOLDER',
+  SET_SHOW_ACCESS_MODAL = 'SET_SHOW_ACCESS_MODAL',
+  SET_SHOW_LINK_MODAL = 'SET_SHOW_LINK_MODAL',
+  SET_SHOW_RENAME_MODAL = 'SET_SHOW_RENAME_MODAL',
   CREATE_FOLDER = 'CREATE_FOLDER',
   SET_PARENTS_LIST = 'SET_PARENTS_LIST',
   SET_STORAGE_FILTERS = 'SET_STORAGE_FILTERS',
@@ -111,6 +135,21 @@ interface SetShowCreateFolderAction {
   payload: boolean;
 }
 
+interface SetShowAccessModalAction {
+  type: StorageActionTypes.SET_SHOW_ACCESS_MODAL;
+  payload: boolean;
+}
+
+interface SetShowLinkModalAction {
+  type: StorageActionTypes.SET_SHOW_LINK_MODAL;
+  payload: boolean;
+}
+
+interface SetShowRenameModalAction {
+  type: StorageActionTypes.SET_SHOW_RENAME_MODAL;
+  payload: boolean;
+}
+
 interface SetCurrentAction {
   type: StorageActionTypes.SET_CURRENT;
   payload: string;
@@ -140,4 +179,7 @@ export type StorageAction =
   | SetShowCreateFolderAction
   | CreateFolderAction
   | SetParentsListAction
-  | SetStorageFiltersAction;
+  | SetStorageFiltersAction
+  | SetShowAccessModalAction
+  | SetShowLinkModalAction
+  | SetShowRenameModalAction;

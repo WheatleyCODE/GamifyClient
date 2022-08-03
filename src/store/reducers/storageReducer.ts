@@ -3,6 +3,9 @@ import { StorageAction, StorageState, StorageActionTypes } from '../../types/sto
 const initialState: StorageState = {
   items: [],
   showCreateFolder: false,
+  showAccessModal: false,
+  showLinkModal: false,
+  showRenameModal: false,
   filter: {
     name: false,
     owner: false,
@@ -37,6 +40,27 @@ export const storageReducer = (state = initialState, action: StorageAction): Sto
       return {
         ...state,
         showCreateFolder: action.payload,
+      };
+    }
+
+    case StorageActionTypes.SET_SHOW_ACCESS_MODAL: {
+      return {
+        ...state,
+        showAccessModal: action.payload,
+      };
+    }
+
+    case StorageActionTypes.SET_SHOW_LINK_MODAL: {
+      return {
+        ...state,
+        showLinkModal: action.payload,
+      };
+    }
+
+    case StorageActionTypes.SET_SHOW_RENAME_MODAL: {
+      return {
+        ...state,
+        showRenameModal: action.payload,
       };
     }
 

@@ -8,7 +8,7 @@ import {
   GiCloudUpload,
   GiDesert,
 } from 'react-icons/gi';
-import { useActions } from '../../hooks/useAction';
+import { useActions } from '../../../hooks/useAction';
 
 export type StorageContextMenuProps = {
   onClose: () => void;
