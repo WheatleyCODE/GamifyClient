@@ -36,7 +36,7 @@ export interface Album {
   tracks: Track[];
   comments: any[];
   accesLink?: string;
-  accesType: AccessType;
+  accessType: AccessType;
   creationDate: number;
   openDate: number;
 }
@@ -47,7 +47,7 @@ export interface Folder {
   user: string;
   name: string;
   accesLink?: string;
-  accesType: AccessType;
+  accessType: AccessType;
   creationDate: number;
   openDate: number;
 }
@@ -64,7 +64,7 @@ export interface Track {
   audio: string;
   comments: any[];
   accesLink?: string;
-  accesType: AccessType;
+  accessType: AccessType;
   creationDate: number;
   openDate: number;
 }
@@ -78,7 +78,7 @@ export interface StorageFilter {
 
 export interface StorageState {
   items: (Track | Album | Folder)[];
-  target: Track | Album | Folder | null;
+  target: Track | Album | Folder;
   showCreateFolder: boolean;
   showAccessModal: boolean;
   showLinkModal: boolean;
@@ -104,6 +104,7 @@ export enum StorageActionTypes {
   CREATE_FOLDER = 'CREATE_FOLDER',
   SET_PARENTS_LIST = 'SET_PARENTS_LIST',
   SET_STORAGE_FILTERS = 'SET_STORAGE_FILTERS',
+  REPLACE_ITEM = 'REPLACE_ITEM',
 }
 
 interface SetStorageAction {
@@ -112,6 +113,14 @@ interface SetStorageAction {
     usedSpace: number;
     diskSpace: number;
     items: (Track | Album | Folder)[];
+  };
+}
+
+interface ReplaceItemAction {
+  type: StorageActionTypes.REPLACE_ITEM;
+  payload: {
+    id: string;
+    item: Track | Album | Folder;
   };
 }
 
@@ -182,4 +191,5 @@ export type StorageAction =
   | SetStorageFiltersAction
   | SetShowAccessModalAction
   | SetShowLinkModalAction
-  | SetShowRenameModalAction;
+  | SetShowRenameModalAction
+  | ReplaceItemAction;

@@ -1,4 +1,5 @@
-import { StorageAction, StorageState, StorageActionTypes } from '../../types/storage';
+import { idText } from 'typescript';
+import { StorageAction, StorageState, StorageActionTypes, Folder } from '../../types/storage';
 
 const initialState: StorageState = {
   items: [],
@@ -13,7 +14,7 @@ const initialState: StorageState = {
     size: false,
   },
   parentsList: [],
-  target: null,
+  target: {} as Folder,
   diskSpace: 0,
   usedSpace: 0,
   loading: false,
@@ -68,6 +69,19 @@ export const storageReducer = (state = initialState, action: StorageAction): Sto
       return {
         ...state,
         filter: action.payload,
+      };
+    }
+
+    case StorageActionTypes.REPLACE_ITEM: {
+      const { id, item } = action.payload;
+      const prevItems = [...state.items];
+      const index = prevItems.findIndex((itm) => itm._id === id);
+      prevItems[index] = item;
+
+      return {
+        ...state,
+        items: prevItems,
+        target: item,
       };
     }
 

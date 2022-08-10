@@ -1,6 +1,15 @@
 import { Dispatch } from 'redux';
 import { StorageService } from '../../services/StorageService';
-import { Childrens, Folder, StorageAction, StorageActionTypes, StorageFilter } from '../../types/storage';
+import { FolderService } from '../../services/FolderService';
+import {
+  Album,
+  Childrens,
+  Folder,
+  StorageAction,
+  StorageActionTypes,
+  StorageFilter,
+  Track,
+} from '../../types/storage';
 
 export const setCurrentItemAC = (payload: string): StorageAction => ({
   type: StorageActionTypes.SET_CURRENT,
@@ -61,6 +70,14 @@ export const setStorageFiltersAC = (payload: StorageFilter): StorageAction => ({
   payload,
 });
 
+export const replaceItemAC = (id: string, item: Folder | Album | Track): StorageAction => ({
+  type: StorageActionTypes.REPLACE_ITEM,
+  payload: {
+    id,
+    item,
+  },
+});
+
 export const fetchItemsReq = (storageId: string) => {
   return async (dispatch: Dispatch<StorageAction>) => {
     try {
@@ -95,7 +112,7 @@ export const fetchChildrensReq = (parentId: string) => {
 export const createFolderReq = (storageId: string, name: string, parentId?: string) => {
   return async (dispatch: Dispatch<StorageAction>) => {
     try {
-      const res = await StorageService.createFolder(storageId, name, parentId);
+      const res = await FolderService.createFolder(storageId, name, parentId);
       dispatch(createFolderAC(res.data));
     } catch (e) {
       console.log(e);

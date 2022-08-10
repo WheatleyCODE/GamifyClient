@@ -17,7 +17,7 @@ export const StorageDrive = () => {
     <div data-context="true" className="storage-drive">
       {items.map((item) => (
         <StorageItem
-          accessType={item.accesType}
+          accessType={item.accessType}
           creationDate={item.creationDate}
           active={target?._id === item._id}
           id={item._id}

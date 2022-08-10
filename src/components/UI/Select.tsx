@@ -2,10 +2,11 @@ import React, { FC, memo, useCallback, useRef, useState } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { IconType } from 'react-icons/lib';
 import { CSSTransition } from 'react-transition-group';
+import { AccessType } from '../../types/storage';
 
 export type SelectItem = {
   text: string;
-  value: string;
+  value: AccessType;
 };
 
 export type SelectProps = {

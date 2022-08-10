@@ -22,7 +22,7 @@ export const StorageFolder = () => {
     <div data-context="true" className="storage-folder">
       {items.map((item) => (
         <StorageItem
-          accessType={item.accesType}
+          accessType={item.accessType}
           creationDate={item.creationDate}
           key={item._id}
           active={target?._id === item._id}

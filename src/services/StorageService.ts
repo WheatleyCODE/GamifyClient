@@ -14,12 +14,4 @@ export class StorageService {
   static fetchParents(childId: string): Promise<AxiosResponse<Folder[]>> {
     return $api.get<Folder[]>(`/api/folders/parents/${childId}`);
   }
-
-  static async createFolder(strgId: string, name: string, parentId?: string): Promise<AxiosResponse<Folder>> {
-    return $api.post<Folder>('/api/folders', {
-      storageId: strgId,
-      name,
-      parentId,
-    });
-  }
 }

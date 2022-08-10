@@ -19,6 +19,8 @@ export const CreateFolderModal: FC = () => {
   }, []);
 
   const createFolder = useCallback(() => {
+    if (!input.value || input.isError) return;
+
     if (params.id) {
       createFolderReq(user.storage, input.value, params.id);
       setShowCreateFolderAC(false);
@@ -27,7 +29,7 @@ export const CreateFolderModal: FC = () => {
 
     createFolderReq(user.storage, input.value);
     setShowCreateFolderAC(false);
-  }, [input.value, params.id, user.storage]);
+  }, [input.value, input.isError, params.id, user.storage]);
 
   return (
     <Confirm closeText="Отмена" upProveText="Создать" onClose={closeModal} onUpProve={createFolder}>
