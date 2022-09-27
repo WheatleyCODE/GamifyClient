@@ -12,9 +12,9 @@ export const DeleteModal: FC = () => {
   }, []);
 
   const deleteItem = useCallback(async () => {
-    deleteItemReq(target._id);
+    deleteItemReq(target._id, target.type);
     closeModal();
-  }, [target._id]);
+  }, [target._id, target.type]);
 
   return (
     <Confirm closeText="Отмена" upProveText="Удалить" onClose={closeModal} onUpProve={deleteItem}>

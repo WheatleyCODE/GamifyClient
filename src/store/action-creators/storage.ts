@@ -5,6 +5,7 @@ import {
   Album,
   Childrens,
   Folder,
+  ItemTypes,
   StorageAction,
   StorageActionTypes,
   StorageFilter,
@@ -130,10 +131,10 @@ export const createFolderReq = (storageId: string, name: string, parentId?: stri
   };
 };
 
-export const deleteItemReq = (itemId: string) => {
+export const deleteItemReq = (itemId: string, itemType: ItemTypes) => {
   return async (dispatch: Dispatch<StorageAction>) => {
     try {
-      const res = await StorageService.deleteItem(itemId);
+      const res = await StorageService.deleteItem(itemId, itemType);
       dispatch(deleteItemAC(itemId));
     } catch (e) {
       console.log(e);
