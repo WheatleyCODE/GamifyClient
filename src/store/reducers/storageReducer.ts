@@ -1,4 +1,3 @@
-import { idText } from 'typescript';
 import { StorageAction, StorageState, StorageActionTypes, Folder } from '../../types/storage';
 
 const initialState: StorageState = {
@@ -7,6 +6,7 @@ const initialState: StorageState = {
   showAccessModal: false,
   showLinkModal: false,
   showRenameModal: false,
+  showDeleteModal: false,
   filter: {
     name: false,
     owner: false,
@@ -62,6 +62,24 @@ export const storageReducer = (state = initialState, action: StorageAction): Sto
       return {
         ...state,
         showRenameModal: action.payload,
+      };
+    }
+
+    case StorageActionTypes.DELETE_ITEM: {
+      const { items } = state;
+      const prevItems = [...items];
+      const newItems = prevItems.filter((item) => item._id !== action.payload);
+
+      return {
+        ...state,
+        items: [...newItems],
+      };
+    }
+
+    case StorageActionTypes.SET_SHOW_DELETE_MODAL: {
+      return {
+        ...state,
+        showDeleteModal: action.payload,
       };
     }
 

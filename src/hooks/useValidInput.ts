@@ -7,6 +7,7 @@ export type ValidInputOpts = {
   isError: boolean;
   isTouched: boolean;
   validError: string | null;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type UseValidInputOpts = ((str: string) => string | null)[];
@@ -42,5 +43,6 @@ export const useValidInput = (fns: UseValidInputOpts): ValidInputOpts => {
     isError: !!(isTouched && validError),
     isTouched,
     validError,
+    setValue,
   };
 };

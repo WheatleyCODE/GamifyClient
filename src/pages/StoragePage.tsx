@@ -19,15 +19,15 @@ import { calcContextMenuCoords, Coords } from '../utils/calcContextMenuCoords';
 import { AccessModal } from '../components/Modals/StorageModals/AccessModal';
 import { LinkModal } from '../components/Modals/StorageModals/LinkModal';
 import { RenameModal } from '../components/Modals/StorageModals/RenameModal';
+import { DeleteModal } from '../components/Modals/StorageModals/DeleteModal';
 
 const StoragePage = () => {
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState<Coords | null>(null);
   const ref = useRef<null | HTMLDivElement>(null);
   const { user } = useTypedSelector((state) => state.auth);
-  const { showCreateFolder, showAccessModal, showLinkModal, showRenameModal } = useTypedSelector(
-    (state) => state.storage,
-  );
+  const { showCreateFolder, showAccessModal, showLinkModal, showRenameModal, showDeleteModal } =
+    useTypedSelector((state) => state.storage);
   const { fetchItemsReq } = useActions();
   const location = useLocation();
 
@@ -101,6 +101,12 @@ const StoragePage = () => {
       <CSSTransition mountOnEnter unmountOnExit in={showRenameModal} timeout={200} classNames="show">
         <Portal>
           <RenameModal />
+        </Portal>
+      </CSSTransition>
+
+      <CSSTransition mountOnEnter unmountOnExit in={showDeleteModal} timeout={200} classNames="show">
+        <Portal>
+          <DeleteModal />
         </Portal>
       </CSSTransition>
     </div>

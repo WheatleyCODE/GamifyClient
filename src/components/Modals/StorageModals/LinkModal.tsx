@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useActions } from '../../../hooks/useAction';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { FolderService } from '../../../services/FolderService';
+import { AccessType } from '../../../types/storage';
 import { Confirm } from '../Confirm';
 
 export const LinkModal: FC = () => {
@@ -18,6 +19,13 @@ export const LinkModal: FC = () => {
 
   const getLink = useCallback(async () => {
     const res = await FolderService.createAccesLink(target._id);
+
+    if (target.accessType !== AccessType.ACCESS_LINK) {
+      const ress = await FolderService.changeAccessType(target._id, AccessType.ACCESS_LINK);
+      replaceItemAC(target._id, ress.data);
+      return;
+    }
+
     replaceItemAC(target._id, res.data);
   }, []);
 

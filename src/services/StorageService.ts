@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { $api } from '../http';
-import { Childrens, Folder, StorageResponse } from '../types/storage';
+import { Album, Childrens, Folder, StorageResponse, Track } from '../types/storage';
 
 export class StorageService {
   static fetchItems(storageId: string): Promise<AxiosResponse<StorageResponse>> {
@@ -13,5 +13,9 @@ export class StorageService {
 
   static fetchParents(childId: string): Promise<AxiosResponse<Folder[]>> {
     return $api.get<Folder[]>(`/api/folders/parents/${childId}`);
+  }
+
+  static deleteItem(itemId: string): Promise<AxiosResponse<(Folder | Album | Track)[]>> {
+    return $api.post<(Folder | Album | Track)[]>(`/api/delete/${itemId}`);
   }
 }

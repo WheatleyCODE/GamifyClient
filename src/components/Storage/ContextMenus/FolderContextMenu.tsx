@@ -14,7 +14,8 @@ export type FolderContextMenuProps = {
 
 export const FolderContextMenu: FC<FolderContextMenuProps> = memo(({ link, onClose }) => {
   const { target } = useTypedSelector((state) => state.storage);
-  const { setShowAccessModalAC, setShowLinkModalAC, setShowRenameModalAC } = useActions();
+  const { setShowAccessModalAC, setShowLinkModalAC, setShowRenameModalAC, setShowDeleteModalAC } =
+    useActions();
   const navigate = useNavigate();
 
   const openFolder = useCallback(() => {
@@ -38,7 +39,7 @@ export const FolderContextMenu: FC<FolderContextMenuProps> = memo(({ link, onClo
   }, []);
 
   const deleteFolder = () => {
-    console.log(target);
+    setShowDeleteModalAC(true);
     onClose();
   };
 

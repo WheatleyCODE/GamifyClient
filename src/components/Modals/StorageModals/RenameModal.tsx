@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { GiOpenFolder } from 'react-icons/gi';
 import { folderNameValidator } from '../../../helpers/validators';
 import { useActions } from '../../../hooks/useAction';
@@ -24,6 +24,10 @@ export const RenameModal: FC = () => {
       setShowRenameModalAC(false);
     }
   }, [target?._id, input.value, input.isError]);
+
+  useEffect(() => {
+    input.setValue(target.name);
+  }, []);
 
   return (
     <Confirm closeText="Отмена" upProveText="Переименовать" onClose={closeModal} onUpProve={rename}>

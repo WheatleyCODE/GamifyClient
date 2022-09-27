@@ -55,6 +55,16 @@ export const setShowRenameModalAC = (payload: boolean): StorageAction => ({
   payload,
 });
 
+export const setShowDeleteModalAC = (payload: boolean): StorageAction => ({
+  type: StorageActionTypes.SET_SHOW_DELETE_MODAL,
+  payload,
+});
+
+export const deleteItemAC = (itemId: string): StorageAction => ({
+  type: StorageActionTypes.DELETE_ITEM,
+  payload: itemId,
+});
+
 export const createFolderAC = (payload: Folder): StorageAction => ({
   type: StorageActionTypes.CREATE_FOLDER,
   payload,
@@ -114,6 +124,17 @@ export const createFolderReq = (storageId: string, name: string, parentId?: stri
     try {
       const res = await FolderService.createFolder(storageId, name, parentId);
       dispatch(createFolderAC(res.data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const deleteItemReq = (itemId: string) => {
+  return async (dispatch: Dispatch<StorageAction>) => {
+    try {
+      const res = await StorageService.deleteItem(itemId);
+      dispatch(deleteItemAC(itemId));
     } catch (e) {
       console.log(e);
     }

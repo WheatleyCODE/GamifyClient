@@ -83,6 +83,7 @@ export interface StorageState {
   showAccessModal: boolean;
   showLinkModal: boolean;
   showRenameModal: boolean;
+  showDeleteModal: boolean;
   filter: StorageFilter;
   parentsList: Folder[];
   diskSpace: number;
@@ -101,10 +102,12 @@ export enum StorageActionTypes {
   SET_SHOW_ACCESS_MODAL = 'SET_SHOW_ACCESS_MODAL',
   SET_SHOW_LINK_MODAL = 'SET_SHOW_LINK_MODAL',
   SET_SHOW_RENAME_MODAL = 'SET_SHOW_RENAME_MODAL',
+  SET_SHOW_DELETE_MODAL = 'SET_SHOW_DELETE_MODAL',
   CREATE_FOLDER = 'CREATE_FOLDER',
   SET_PARENTS_LIST = 'SET_PARENTS_LIST',
   SET_STORAGE_FILTERS = 'SET_STORAGE_FILTERS',
   REPLACE_ITEM = 'REPLACE_ITEM',
+  DELETE_ITEM = 'DELETE_ITEM',
 }
 
 interface SetStorageAction {
@@ -159,6 +162,16 @@ interface SetShowRenameModalAction {
   payload: boolean;
 }
 
+interface SetShowDeleteModalAction {
+  type: StorageActionTypes.SET_SHOW_DELETE_MODAL;
+  payload: boolean;
+}
+
+interface DeleteItemAction {
+  type: StorageActionTypes.DELETE_ITEM;
+  payload: string;
+}
+
 interface SetCurrentAction {
   type: StorageActionTypes.SET_CURRENT;
   payload: string;
@@ -192,4 +205,6 @@ export type StorageAction =
   | SetShowAccessModalAction
   | SetShowLinkModalAction
   | SetShowRenameModalAction
+  | SetShowDeleteModalAction
+  | DeleteItemAction
   | ReplaceItemAction;
