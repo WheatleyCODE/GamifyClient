@@ -27,6 +27,7 @@ export const StorageLast: FC = memo(() => {
     <div ref={ref} className="storage-last">
       <div className="storage-last__title">Последние</div>
       <div className="storage-last__items">
+        {/* !! Keys error */}
         {items.map(() => (
           <StorageLastItem />
         ))}

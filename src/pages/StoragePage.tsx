@@ -7,7 +7,6 @@ import { StorageHeader } from '../components/Storage/StorageHeader/StorageHeader
 import { StorageLast } from '../components/Storage/StorageLast/StorageLast';
 import { StorageSorter } from '../components/Storage/StorageSections/StorageSorter/StorageSorter';
 import { useClickOutside } from '../hooks/useClickOutside';
-import { delay } from '../utils/delay';
 import { StorageContextMenu } from '../components/Storage/ContextMenus/StorageContextMenu';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useAction';
